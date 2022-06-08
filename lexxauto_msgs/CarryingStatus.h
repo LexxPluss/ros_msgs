@@ -16,15 +16,15 @@ namespace lexxauto_msgs
       _carrying_object_type carrying_object;
       typedef bool _front_blind_type;
       _front_blind_type front_blind;
-      typedef bool _back_blind_type;
-      _back_blind_type back_blind;
+      typedef bool _rear_blind_type;
+      _rear_blind_type rear_blind;
       typedef bool _side_blind_type;
       _side_blind_type side_blind;
 
     CarryingStatus():
       carrying_object(""),
       front_blind(0),
-      back_blind(0),
+      rear_blind(0),
       side_blind(0)
     {
     }
@@ -47,10 +47,10 @@ namespace lexxauto_msgs
       union {
         bool real;
         uint8_t base;
-      } u_back_blind;
-      u_back_blind.real = this->back_blind;
-      *(outbuffer + offset + 0) = (u_back_blind.base >> (8 * 0)) & 0xFF;
-      offset += sizeof(this->back_blind);
+      } u_rear_blind;
+      u_rear_blind.real = this->rear_blind;
+      *(outbuffer + offset + 0) = (u_rear_blind.base >> (8 * 0)) & 0xFF;
+      offset += sizeof(this->rear_blind);
       union {
         bool real;
         uint8_t base;
@@ -84,11 +84,11 @@ namespace lexxauto_msgs
       union {
         bool real;
         uint8_t base;
-      } u_back_blind;
-      u_back_blind.base = 0;
-      u_back_blind.base |= ((uint8_t) (*(inbuffer + offset + 0))) << (8 * 0);
-      this->back_blind = u_back_blind.real;
-      offset += sizeof(this->back_blind);
+      } u_rear_blind;
+      u_rear_blind.base = 0;
+      u_rear_blind.base |= ((uint8_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      this->rear_blind = u_rear_blind.real;
+      offset += sizeof(this->rear_blind);
       union {
         bool real;
         uint8_t base;
@@ -101,7 +101,7 @@ namespace lexxauto_msgs
     }
 
     const char * getType(){ return "lexxauto_msgs/CarryingStatus"; };
-    const char * getMD5(){ return "5a3ee7b1b017602e3da500953dbe602a"; };
+    const char * getMD5(){ return "9e39db9fb526b843a8e4a9843e3284b9"; };
 
   };
 

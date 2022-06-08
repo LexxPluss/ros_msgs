@@ -22,12 +22,12 @@ namespace lexxauto_msgs
       _side_right_type side_right;
       typedef const char* _side_left_type;
       _side_left_type side_left;
-      typedef const char* _back_type;
-      _back_type back;
-      typedef const char* _back_right_type;
-      _back_right_type back_right;
-      typedef const char* _back_left_type;
-      _back_left_type back_left;
+      typedef const char* _rear_type;
+      _rear_type rear;
+      typedef const char* _rear_right_type;
+      _rear_right_type rear_right;
+      typedef const char* _rear_left_type;
+      _rear_left_type rear_left;
 
     safety_func():
       front(""),
@@ -35,9 +35,9 @@ namespace lexxauto_msgs
       front_left(""),
       side_right(""),
       side_left(""),
-      back(""),
-      back_right(""),
-      back_left("")
+      rear(""),
+      rear_right(""),
+      rear_left("")
     {
     }
 
@@ -69,21 +69,21 @@ namespace lexxauto_msgs
       offset += 4;
       memcpy(outbuffer + offset, this->side_left, length_side_left);
       offset += length_side_left;
-      uint32_t length_back = strlen(this->back);
-      varToArr(outbuffer + offset, length_back);
+      uint32_t length_rear = strlen(this->rear);
+      varToArr(outbuffer + offset, length_rear);
       offset += 4;
-      memcpy(outbuffer + offset, this->back, length_back);
-      offset += length_back;
-      uint32_t length_back_right = strlen(this->back_right);
-      varToArr(outbuffer + offset, length_back_right);
+      memcpy(outbuffer + offset, this->rear, length_rear);
+      offset += length_rear;
+      uint32_t length_rear_right = strlen(this->rear_right);
+      varToArr(outbuffer + offset, length_rear_right);
       offset += 4;
-      memcpy(outbuffer + offset, this->back_right, length_back_right);
-      offset += length_back_right;
-      uint32_t length_back_left = strlen(this->back_left);
-      varToArr(outbuffer + offset, length_back_left);
+      memcpy(outbuffer + offset, this->rear_right, length_rear_right);
+      offset += length_rear_right;
+      uint32_t length_rear_left = strlen(this->rear_left);
+      varToArr(outbuffer + offset, length_rear_left);
       offset += 4;
-      memcpy(outbuffer + offset, this->back_left, length_back_left);
-      offset += length_back_left;
+      memcpy(outbuffer + offset, this->rear_left, length_rear_left);
+      offset += length_rear_left;
       return offset;
     }
 
@@ -135,38 +135,38 @@ namespace lexxauto_msgs
       inbuffer[offset+length_side_left-1]=0;
       this->side_left = (char *)(inbuffer + offset-1);
       offset += length_side_left;
-      uint32_t length_back;
-      arrToVar(length_back, (inbuffer + offset));
+      uint32_t length_rear;
+      arrToVar(length_rear, (inbuffer + offset));
       offset += 4;
-      for(unsigned int k= offset; k< offset+length_back; ++k){
+      for(unsigned int k= offset; k< offset+length_rear; ++k){
           inbuffer[k-1]=inbuffer[k];
       }
-      inbuffer[offset+length_back-1]=0;
-      this->back = (char *)(inbuffer + offset-1);
-      offset += length_back;
-      uint32_t length_back_right;
-      arrToVar(length_back_right, (inbuffer + offset));
+      inbuffer[offset+length_rear-1]=0;
+      this->rear = (char *)(inbuffer + offset-1);
+      offset += length_rear;
+      uint32_t length_rear_right;
+      arrToVar(length_rear_right, (inbuffer + offset));
       offset += 4;
-      for(unsigned int k= offset; k< offset+length_back_right; ++k){
+      for(unsigned int k= offset; k< offset+length_rear_right; ++k){
           inbuffer[k-1]=inbuffer[k];
       }
-      inbuffer[offset+length_back_right-1]=0;
-      this->back_right = (char *)(inbuffer + offset-1);
-      offset += length_back_right;
-      uint32_t length_back_left;
-      arrToVar(length_back_left, (inbuffer + offset));
+      inbuffer[offset+length_rear_right-1]=0;
+      this->rear_right = (char *)(inbuffer + offset-1);
+      offset += length_rear_right;
+      uint32_t length_rear_left;
+      arrToVar(length_rear_left, (inbuffer + offset));
       offset += 4;
-      for(unsigned int k= offset; k< offset+length_back_left; ++k){
+      for(unsigned int k= offset; k< offset+length_rear_left; ++k){
           inbuffer[k-1]=inbuffer[k];
       }
-      inbuffer[offset+length_back_left-1]=0;
-      this->back_left = (char *)(inbuffer + offset-1);
-      offset += length_back_left;
+      inbuffer[offset+length_rear_left-1]=0;
+      this->rear_left = (char *)(inbuffer + offset-1);
+      offset += length_rear_left;
      return offset;
     }
 
     const char * getType(){ return "lexxauto_msgs/safety_func"; };
-    const char * getMD5(){ return "ee65857e256092b3484d60a0d93f6cf7"; };
+    const char * getMD5(){ return "06e6bc74d949e7c8634ec689f489bcc5"; };
 
   };
 

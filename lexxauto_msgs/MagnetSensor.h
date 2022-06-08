@@ -16,16 +16,16 @@ namespace lexxauto_msgs
       _front_left_type front_left;
       typedef uint16_t _front_right_type;
       _front_right_type front_right;
-      typedef uint16_t _back_left_type;
-      _back_left_type back_left;
-      typedef uint16_t _back_right_type;
-      _back_right_type back_right;
+      typedef uint16_t _rear_left_type;
+      _rear_left_type rear_left;
+      typedef uint16_t _rear_right_type;
+      _rear_right_type rear_right;
 
     MagnetSensor():
       front_left(0),
       front_right(0),
-      back_left(0),
-      back_right(0)
+      rear_left(0),
+      rear_right(0)
     {
     }
 
@@ -38,12 +38,12 @@ namespace lexxauto_msgs
       *(outbuffer + offset + 0) = (this->front_right >> (8 * 0)) & 0xFF;
       *(outbuffer + offset + 1) = (this->front_right >> (8 * 1)) & 0xFF;
       offset += sizeof(this->front_right);
-      *(outbuffer + offset + 0) = (this->back_left >> (8 * 0)) & 0xFF;
-      *(outbuffer + offset + 1) = (this->back_left >> (8 * 1)) & 0xFF;
-      offset += sizeof(this->back_left);
-      *(outbuffer + offset + 0) = (this->back_right >> (8 * 0)) & 0xFF;
-      *(outbuffer + offset + 1) = (this->back_right >> (8 * 1)) & 0xFF;
-      offset += sizeof(this->back_right);
+      *(outbuffer + offset + 0) = (this->rear_left >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->rear_left >> (8 * 1)) & 0xFF;
+      offset += sizeof(this->rear_left);
+      *(outbuffer + offset + 0) = (this->rear_right >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->rear_right >> (8 * 1)) & 0xFF;
+      offset += sizeof(this->rear_right);
       return offset;
     }
 
@@ -56,17 +56,17 @@ namespace lexxauto_msgs
       this->front_right =  ((uint16_t) (*(inbuffer + offset)));
       this->front_right |= ((uint16_t) (*(inbuffer + offset + 1))) << (8 * 1);
       offset += sizeof(this->front_right);
-      this->back_left =  ((uint16_t) (*(inbuffer + offset)));
-      this->back_left |= ((uint16_t) (*(inbuffer + offset + 1))) << (8 * 1);
-      offset += sizeof(this->back_left);
-      this->back_right =  ((uint16_t) (*(inbuffer + offset)));
-      this->back_right |= ((uint16_t) (*(inbuffer + offset + 1))) << (8 * 1);
-      offset += sizeof(this->back_right);
+      this->rear_left =  ((uint16_t) (*(inbuffer + offset)));
+      this->rear_left |= ((uint16_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      offset += sizeof(this->rear_left);
+      this->rear_right =  ((uint16_t) (*(inbuffer + offset)));
+      this->rear_right |= ((uint16_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      offset += sizeof(this->rear_right);
      return offset;
     }
 
     const char * getType(){ return "lexxauto_msgs/MagnetSensor"; };
-    const char * getMD5(){ return "13f79d296469ce879ee28320d808839b"; };
+    const char * getMD5(){ return "8d08fe0a0a41204c90d69bfdb96ffb4d"; };
 
   };
 
