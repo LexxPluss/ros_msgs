@@ -14,17 +14,17 @@ namespace lexxauto_msgs
     public:
       typedef int32_t _station_id_type;
       _station_id_type station_id;
-      typedef const char* _connection_scenario_type;
-      _connection_scenario_type connection_scenario;
-      typedef const char* _disconnection_scenario_type;
-      _disconnection_scenario_type disconnection_scenario;
+      typedef const char* _connection_scene_type;
+      _connection_scene_type connection_scene;
+      typedef const char* _disconnection_scene_type;
+      _disconnection_scene_type disconnection_scene;
       typedef int32_t _back_id_type;
       _back_id_type back_id;
 
     RequestCharging():
       station_id(0),
-      connection_scenario(""),
-      disconnection_scenario(""),
+      connection_scene(""),
+      disconnection_scene(""),
       back_id(0)
     {
     }
@@ -42,16 +42,16 @@ namespace lexxauto_msgs
       *(outbuffer + offset + 2) = (u_station_id.base >> (8 * 2)) & 0xFF;
       *(outbuffer + offset + 3) = (u_station_id.base >> (8 * 3)) & 0xFF;
       offset += sizeof(this->station_id);
-      uint32_t length_connection_scenario = strlen(this->connection_scenario);
-      varToArr(outbuffer + offset, length_connection_scenario);
+      uint32_t length_connection_scene = strlen(this->connection_scene);
+      varToArr(outbuffer + offset, length_connection_scene);
       offset += 4;
-      memcpy(outbuffer + offset, this->connection_scenario, length_connection_scenario);
-      offset += length_connection_scenario;
-      uint32_t length_disconnection_scenario = strlen(this->disconnection_scenario);
-      varToArr(outbuffer + offset, length_disconnection_scenario);
+      memcpy(outbuffer + offset, this->connection_scene, length_connection_scene);
+      offset += length_connection_scene;
+      uint32_t length_disconnection_scene = strlen(this->disconnection_scene);
+      varToArr(outbuffer + offset, length_disconnection_scene);
       offset += 4;
-      memcpy(outbuffer + offset, this->disconnection_scenario, length_disconnection_scenario);
-      offset += length_disconnection_scenario;
+      memcpy(outbuffer + offset, this->disconnection_scene, length_disconnection_scene);
+      offset += length_disconnection_scene;
       union {
         int32_t real;
         uint32_t base;
@@ -79,24 +79,24 @@ namespace lexxauto_msgs
       u_station_id.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
       this->station_id = u_station_id.real;
       offset += sizeof(this->station_id);
-      uint32_t length_connection_scenario;
-      arrToVar(length_connection_scenario, (inbuffer + offset));
+      uint32_t length_connection_scene;
+      arrToVar(length_connection_scene, (inbuffer + offset));
       offset += 4;
-      for(unsigned int k= offset; k< offset+length_connection_scenario; ++k){
+      for(unsigned int k= offset; k< offset+length_connection_scene; ++k){
           inbuffer[k-1]=inbuffer[k];
       }
-      inbuffer[offset+length_connection_scenario-1]=0;
-      this->connection_scenario = (char *)(inbuffer + offset-1);
-      offset += length_connection_scenario;
-      uint32_t length_disconnection_scenario;
-      arrToVar(length_disconnection_scenario, (inbuffer + offset));
+      inbuffer[offset+length_connection_scene-1]=0;
+      this->connection_scene = (char *)(inbuffer + offset-1);
+      offset += length_connection_scene;
+      uint32_t length_disconnection_scene;
+      arrToVar(length_disconnection_scene, (inbuffer + offset));
       offset += 4;
-      for(unsigned int k= offset; k< offset+length_disconnection_scenario; ++k){
+      for(unsigned int k= offset; k< offset+length_disconnection_scene; ++k){
           inbuffer[k-1]=inbuffer[k];
       }
-      inbuffer[offset+length_disconnection_scenario-1]=0;
-      this->disconnection_scenario = (char *)(inbuffer + offset-1);
-      offset += length_disconnection_scenario;
+      inbuffer[offset+length_disconnection_scene-1]=0;
+      this->disconnection_scene = (char *)(inbuffer + offset-1);
+      offset += length_disconnection_scene;
       union {
         int32_t real;
         uint32_t base;
@@ -112,7 +112,7 @@ namespace lexxauto_msgs
     }
 
     const char * getType(){ return "lexxauto_msgs/RequestCharging"; };
-    const char * getMD5(){ return "a31014dfe6cc18b24013c44999a4134f"; };
+    const char * getMD5(){ return "aa9775caac9760004f7b249bf217f02c"; };
 
   };
 
