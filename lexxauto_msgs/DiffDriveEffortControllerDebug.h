@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "geometry_msgs/Twist.h"
 #include "lexxauto_msgs/DiffDriveEffortControllerSideState.h"
 
 namespace lexxauto_msgs
@@ -13,10 +14,14 @@ namespace lexxauto_msgs
   class DiffDriveEffortControllerDebug : public ros::Msg
   {
     public:
-      typedef float _vx_cmd_vel_type;
-      _vx_cmd_vel_type vx_cmd_vel;
-      typedef float _wz_cmd_vel_type;
-      _wz_cmd_vel_type wz_cmd_vel;
+      typedef geometry_msgs::Twist _cmd_vel_raw_type;
+      _cmd_vel_raw_type cmd_vel_raw;
+      typedef geometry_msgs::Twist _cmd_vel_filtered_type;
+      _cmd_vel_filtered_type cmd_vel_filtered;
+      typedef geometry_msgs::Twist _cmd_vel_scaled_type;
+      _cmd_vel_scaled_type cmd_vel_scaled;
+      typedef geometry_msgs::Twist _measured_twist_filtered_type;
+      _measured_twist_filtered_type measured_twist_filtered;
       typedef lexxauto_msgs::DiffDriveEffortControllerSideState _right_state_type;
       _right_state_type right_state;
       typedef lexxauto_msgs::DiffDriveEffortControllerSideState _left_state_type;
@@ -31,8 +36,10 @@ namespace lexxauto_msgs
       _estimated_param_variance_type * estimated_param_variance;
 
     DiffDriveEffortControllerDebug():
-      vx_cmd_vel(0),
-      wz_cmd_vel(0),
+      cmd_vel_raw(),
+      cmd_vel_filtered(),
+      cmd_vel_scaled(),
+      measured_twist_filtered(),
       right_state(),
       left_state(),
       estimated_param_length(0), estimated_param(NULL),
@@ -43,8 +50,10 @@ namespace lexxauto_msgs
     virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
-      offset += serializeAvrFloat64(outbuffer + offset, this->vx_cmd_vel);
-      offset += serializeAvrFloat64(outbuffer + offset, this->wz_cmd_vel);
+      offset += this->cmd_vel_raw.serialize(outbuffer + offset);
+      offset += this->cmd_vel_filtered.serialize(outbuffer + offset);
+      offset += this->cmd_vel_scaled.serialize(outbuffer + offset);
+      offset += this->measured_twist_filtered.serialize(outbuffer + offset);
       offset += this->right_state.serialize(outbuffer + offset);
       offset += this->left_state.serialize(outbuffer + offset);
       *(outbuffer + offset + 0) = (this->estimated_param_length >> (8 * 0)) & 0xFF;
@@ -69,8 +78,10 @@ namespace lexxauto_msgs
     virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->vx_cmd_vel));
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->wz_cmd_vel));
+      offset += this->cmd_vel_raw.deserialize(inbuffer + offset);
+      offset += this->cmd_vel_filtered.deserialize(inbuffer + offset);
+      offset += this->cmd_vel_scaled.deserialize(inbuffer + offset);
+      offset += this->measured_twist_filtered.deserialize(inbuffer + offset);
       offset += this->right_state.deserialize(inbuffer + offset);
       offset += this->left_state.deserialize(inbuffer + offset);
       uint32_t estimated_param_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -101,7 +112,7 @@ namespace lexxauto_msgs
     }
 
     const char * getType(){ return "lexxauto_msgs/DiffDriveEffortControllerDebug"; };
-    const char * getMD5(){ return "649cb27cdf5698c9c1ba007ba463febb"; };
+    const char * getMD5(){ return "f7080fc1d2a50c439143914f20d62637"; };
 
   };
 
