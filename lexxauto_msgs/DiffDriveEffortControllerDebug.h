@@ -26,14 +26,18 @@ namespace lexxauto_msgs
       _right_state_type right_state;
       typedef lexxauto_msgs::DiffDriveEffortControllerSideState _left_state_type;
       _left_state_type left_state;
-      uint32_t estimated_param_length;
-      typedef float _estimated_param_type;
-      _estimated_param_type st_estimated_param;
-      _estimated_param_type * estimated_param;
-      uint32_t estimated_param_variance_length;
-      typedef float _estimated_param_variance_type;
-      _estimated_param_variance_type st_estimated_param_variance;
-      _estimated_param_variance_type * estimated_param_variance;
+      typedef float _adaptive_p_gain_type;
+      _adaptive_p_gain_type adaptive_p_gain;
+      typedef float _adaptive_ff_type;
+      _adaptive_ff_type adaptive_ff;
+      typedef float _adaptive_static_ff_type;
+      _adaptive_static_ff_type adaptive_static_ff;
+      typedef float _adaptive_wz_scale_type;
+      _adaptive_wz_scale_type adaptive_wz_scale;
+      typedef float _adaptive_max_torque_type;
+      _adaptive_max_torque_type adaptive_max_torque;
+      typedef float _adaptive_min_torque_type;
+      _adaptive_min_torque_type adaptive_min_torque;
 
     DiffDriveEffortControllerDebug():
       cmd_vel_raw(),
@@ -42,8 +46,12 @@ namespace lexxauto_msgs
       measured_twist_filtered(),
       right_state(),
       left_state(),
-      estimated_param_length(0), estimated_param(NULL),
-      estimated_param_variance_length(0), estimated_param_variance(NULL)
+      adaptive_p_gain(0),
+      adaptive_ff(0),
+      adaptive_static_ff(0),
+      adaptive_wz_scale(0),
+      adaptive_max_torque(0),
+      adaptive_min_torque(0)
     {
     }
 
@@ -56,22 +64,12 @@ namespace lexxauto_msgs
       offset += this->measured_twist_filtered.serialize(outbuffer + offset);
       offset += this->right_state.serialize(outbuffer + offset);
       offset += this->left_state.serialize(outbuffer + offset);
-      *(outbuffer + offset + 0) = (this->estimated_param_length >> (8 * 0)) & 0xFF;
-      *(outbuffer + offset + 1) = (this->estimated_param_length >> (8 * 1)) & 0xFF;
-      *(outbuffer + offset + 2) = (this->estimated_param_length >> (8 * 2)) & 0xFF;
-      *(outbuffer + offset + 3) = (this->estimated_param_length >> (8 * 3)) & 0xFF;
-      offset += sizeof(this->estimated_param_length);
-      for( uint32_t i = 0; i < estimated_param_length; i++){
-      offset += serializeAvrFloat64(outbuffer + offset, this->estimated_param[i]);
-      }
-      *(outbuffer + offset + 0) = (this->estimated_param_variance_length >> (8 * 0)) & 0xFF;
-      *(outbuffer + offset + 1) = (this->estimated_param_variance_length >> (8 * 1)) & 0xFF;
-      *(outbuffer + offset + 2) = (this->estimated_param_variance_length >> (8 * 2)) & 0xFF;
-      *(outbuffer + offset + 3) = (this->estimated_param_variance_length >> (8 * 3)) & 0xFF;
-      offset += sizeof(this->estimated_param_variance_length);
-      for( uint32_t i = 0; i < estimated_param_variance_length; i++){
-      offset += serializeAvrFloat64(outbuffer + offset, this->estimated_param_variance[i]);
-      }
+      offset += serializeAvrFloat64(outbuffer + offset, this->adaptive_p_gain);
+      offset += serializeAvrFloat64(outbuffer + offset, this->adaptive_ff);
+      offset += serializeAvrFloat64(outbuffer + offset, this->adaptive_static_ff);
+      offset += serializeAvrFloat64(outbuffer + offset, this->adaptive_wz_scale);
+      offset += serializeAvrFloat64(outbuffer + offset, this->adaptive_max_torque);
+      offset += serializeAvrFloat64(outbuffer + offset, this->adaptive_min_torque);
       return offset;
     }
 
@@ -84,35 +82,17 @@ namespace lexxauto_msgs
       offset += this->measured_twist_filtered.deserialize(inbuffer + offset);
       offset += this->right_state.deserialize(inbuffer + offset);
       offset += this->left_state.deserialize(inbuffer + offset);
-      uint32_t estimated_param_lengthT = ((uint32_t) (*(inbuffer + offset))); 
-      estimated_param_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
-      estimated_param_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
-      estimated_param_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
-      offset += sizeof(this->estimated_param_length);
-      if(estimated_param_lengthT > estimated_param_length)
-        this->estimated_param = (float*)realloc(this->estimated_param, estimated_param_lengthT * sizeof(float));
-      estimated_param_length = estimated_param_lengthT;
-      for( uint32_t i = 0; i < estimated_param_length; i++){
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->st_estimated_param));
-        memcpy( &(this->estimated_param[i]), &(this->st_estimated_param), sizeof(float));
-      }
-      uint32_t estimated_param_variance_lengthT = ((uint32_t) (*(inbuffer + offset))); 
-      estimated_param_variance_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
-      estimated_param_variance_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
-      estimated_param_variance_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
-      offset += sizeof(this->estimated_param_variance_length);
-      if(estimated_param_variance_lengthT > estimated_param_variance_length)
-        this->estimated_param_variance = (float*)realloc(this->estimated_param_variance, estimated_param_variance_lengthT * sizeof(float));
-      estimated_param_variance_length = estimated_param_variance_lengthT;
-      for( uint32_t i = 0; i < estimated_param_variance_length; i++){
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->st_estimated_param_variance));
-        memcpy( &(this->estimated_param_variance[i]), &(this->st_estimated_param_variance), sizeof(float));
-      }
+      offset += deserializeAvrFloat64(inbuffer + offset, &(this->adaptive_p_gain));
+      offset += deserializeAvrFloat64(inbuffer + offset, &(this->adaptive_ff));
+      offset += deserializeAvrFloat64(inbuffer + offset, &(this->adaptive_static_ff));
+      offset += deserializeAvrFloat64(inbuffer + offset, &(this->adaptive_wz_scale));
+      offset += deserializeAvrFloat64(inbuffer + offset, &(this->adaptive_max_torque));
+      offset += deserializeAvrFloat64(inbuffer + offset, &(this->adaptive_min_torque));
      return offset;
     }
 
     const char * getType(){ return "lexxauto_msgs/DiffDriveEffortControllerDebug"; };
-    const char * getMD5(){ return "f7080fc1d2a50c439143914f20d62637"; };
+    const char * getMD5(){ return "5689093cea4053a0b72d5db2d3538474"; };
 
   };
 

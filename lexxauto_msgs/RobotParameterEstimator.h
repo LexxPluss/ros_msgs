@@ -24,18 +24,6 @@ namespace lexxauto_msgs
       _estimated_inertia_orig_type estimated_inertia_orig;
       typedef float _estimated_inertia_stddev_type;
       _estimated_inertia_stddev_type estimated_inertia_stddev;
-      typedef float _adaptive_p_gain_type;
-      _adaptive_p_gain_type adaptive_p_gain;
-      typedef float _adaptive_ff_type;
-      _adaptive_ff_type adaptive_ff;
-      typedef float _adaptive_static_ff_type;
-      _adaptive_static_ff_type adaptive_static_ff;
-      typedef float _adaptive_wz_scale_type;
-      _adaptive_wz_scale_type adaptive_wz_scale;
-      typedef float _adaptive_max_torque_type;
-      _adaptive_max_torque_type adaptive_max_torque;
-      typedef float _adaptive_min_torque_type;
-      _adaptive_min_torque_type adaptive_min_torque;
       typedef float _current_accel_ax_type;
       _current_accel_ax_type current_accel_ax;
       typedef float _current_accel_wz_type;
@@ -58,12 +46,6 @@ namespace lexxauto_msgs
       estimated_inertia(0),
       estimated_inertia_orig(0),
       estimated_inertia_stddev(0),
-      adaptive_p_gain(0),
-      adaptive_ff(0),
-      adaptive_static_ff(0),
-      adaptive_wz_scale(0),
-      adaptive_max_torque(0),
-      adaptive_min_torque(0),
       current_accel_ax(0),
       current_accel_wz(0),
       torque_sum_highest_weight(0),
@@ -83,12 +65,6 @@ namespace lexxauto_msgs
       offset += serializeAvrFloat64(outbuffer + offset, this->estimated_inertia);
       offset += serializeAvrFloat64(outbuffer + offset, this->estimated_inertia_orig);
       offset += serializeAvrFloat64(outbuffer + offset, this->estimated_inertia_stddev);
-      offset += serializeAvrFloat64(outbuffer + offset, this->adaptive_p_gain);
-      offset += serializeAvrFloat64(outbuffer + offset, this->adaptive_ff);
-      offset += serializeAvrFloat64(outbuffer + offset, this->adaptive_static_ff);
-      offset += serializeAvrFloat64(outbuffer + offset, this->adaptive_wz_scale);
-      offset += serializeAvrFloat64(outbuffer + offset, this->adaptive_max_torque);
-      offset += serializeAvrFloat64(outbuffer + offset, this->adaptive_min_torque);
       offset += serializeAvrFloat64(outbuffer + offset, this->current_accel_ax);
       offset += serializeAvrFloat64(outbuffer + offset, this->current_accel_wz);
       offset += serializeAvrFloat64(outbuffer + offset, this->torque_sum_highest_weight);
@@ -117,12 +93,6 @@ namespace lexxauto_msgs
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->estimated_inertia));
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->estimated_inertia_orig));
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->estimated_inertia_stddev));
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->adaptive_p_gain));
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->adaptive_ff));
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->adaptive_static_ff));
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->adaptive_wz_scale));
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->adaptive_max_torque));
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->adaptive_min_torque));
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->current_accel_ax));
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->current_accel_wz));
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->torque_sum_highest_weight));
@@ -144,7 +114,7 @@ namespace lexxauto_msgs
     }
 
     const char * getType(){ return "lexxauto_msgs/RobotParameterEstimator"; };
-    const char * getMD5(){ return "389ccc8fba942b1352c21dc2e2375c2b"; };
+    const char * getMD5(){ return "f49b103dffe87fbccc18cfe9e57b3d36"; };
 
   };
 

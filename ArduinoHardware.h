@@ -70,7 +70,9 @@ class ArduinoHardware {
     }
     ArduinoHardware()
     {
-#if defined(USBCON) and !(defined(USE_USBCON))
+#if defined(_SAMD21_) and defined(USE_USBCON)
+      iostream=&SerialUSB;
+#elif defined(USBCON) and !(defined(USE_USBCON))
       /* Leonardo support */
       iostream = &Serial1;
 #elif defined(USE_TEENSY_HW_SERIAL) or defined(USE_STM32_HW_SERIAL)
@@ -83,6 +85,10 @@ class ArduinoHardware {
     ArduinoHardware(ArduinoHardware& h){
       this->iostream = h.iostream;
       this->baud_ = h.baud_;
+    }
+
+    void setPort(SERIAL_CLASS* io){
+      this->iostream = io;
     }
   
     void setBaud(long baud){
@@ -101,8 +107,7 @@ class ArduinoHardware {
 
     int read(){return iostream->read();};
     void write(uint8_t* data, int length){
-      for(int i=0; i<length; i++)
-        iostream->write(data[i]);
+      iostream->write(data, length);
     }
 
     unsigned long time(){return millis();}
