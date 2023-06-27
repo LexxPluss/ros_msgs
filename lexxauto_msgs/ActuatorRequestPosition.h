@@ -25,6 +25,7 @@ namespace lexxauto_msgs
       typedef int8_t _value_type;
       _value_type st_value;
       _value_type * value;
+      enum { MODE_INITIALIZE = -1 };
       enum { MODE_STOP = 0 };
       enum { MODE_POSITION = 1 };
       enum { MODE_LOCATION = 2 };
@@ -123,7 +124,7 @@ namespace lexxauto_msgs
     }
 
     const char * getType(){ return "lexxauto_msgs/ActuatorRequestPosition"; };
-    const char * getMD5(){ return "89c0d798747be781c349aaff27a3f6da"; };
+    const char * getMD5(){ return "d86e2500fb9b095e8273c3cca4fa8926"; };
 
   };
 
