@@ -33,7 +33,7 @@ static const char SETIDENTITY[] = "lexxauto_msgs/SetIdentity";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_uuid = strlen(this->uuid);
@@ -64,7 +64,7 @@ static const char SETIDENTITY[] = "lexxauto_msgs/SetIdentity";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_uuid;
@@ -115,8 +115,8 @@ static const char SETIDENTITY[] = "lexxauto_msgs/SetIdentity";
      return offset;
     }
 
-    const char * getType(){ return SETIDENTITY; };
-    const char * getMD5(){ return "05f30b7d0aef880b9b462816ca00cd31"; };
+    virtual const char * getType() override { return SETIDENTITY; };
+    virtual const char * getMD5() override { return "05f30b7d0aef880b9b462816ca00cd31"; };
 
   };
 
@@ -128,20 +128,20 @@ static const char SETIDENTITY[] = "lexxauto_msgs/SetIdentity";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
      return offset;
     }
 
-    const char * getType(){ return SETIDENTITY; };
-    const char * getMD5(){ return "d41d8cd98f00b204e9800998ecf8427e"; };
+    virtual const char * getType() override { return SETIDENTITY; };
+    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
 
   };
 

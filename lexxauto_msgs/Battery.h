@@ -25,12 +25,12 @@ namespace lexxauto_msgs
 
     Battery():
       state(),
-      temps_length(0), temps(NULL),
+      temps_length(0), st_temps(), temps(nullptr),
       state_of_health(0)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->state.serialize(outbuffer + offset);
@@ -47,7 +47,7 @@ namespace lexxauto_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->state.deserialize(inbuffer + offset);
@@ -68,8 +68,8 @@ namespace lexxauto_msgs
      return offset;
     }
 
-    const char * getType(){ return "lexxauto_msgs/Battery"; };
-    const char * getMD5(){ return "666051cff6d901f1b395194631cab08c"; };
+    virtual const char * getType() override { return "lexxauto_msgs/Battery"; };
+    virtual const char * getMD5() override { return "613e648de502c9f11fd29aa4bc7d095e"; };
 
   };
 

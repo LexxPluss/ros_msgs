@@ -51,7 +51,7 @@ namespace lexxauto_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -115,7 +115,7 @@ namespace lexxauto_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -188,8 +188,8 @@ namespace lexxauto_msgs
      return offset;
     }
 
-    const char * getType(){ return "lexxauto_msgs/PositionGuideVision"; };
-    const char * getMD5(){ return "563f3fb578e3c9a6f8c9584e082c3bbe"; };
+    virtual const char * getType() override { return "lexxauto_msgs/PositionGuideVision"; };
+    virtual const char * getMD5() override { return "563f3fb578e3c9a6f8c9584e082c3bbe"; };
 
   };
 

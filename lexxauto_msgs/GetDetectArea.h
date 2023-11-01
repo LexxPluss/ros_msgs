@@ -21,7 +21,7 @@ static const char GETDETECTAREA[] = "lexxauto_msgs/GetDetectArea";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_area_name = strlen(this->area_name);
@@ -32,7 +32,7 @@ static const char GETDETECTAREA[] = "lexxauto_msgs/GetDetectArea";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_area_name;
@@ -47,8 +47,8 @@ static const char GETDETECTAREA[] = "lexxauto_msgs/GetDetectArea";
      return offset;
     }
 
-    const char * getType(){ return GETDETECTAREA; };
-    const char * getMD5(){ return "a2d7ccf8e5de29f456d5e1df798f949b"; };
+    virtual const char * getType() override { return GETDETECTAREA; };
+    virtual const char * getMD5() override { return "a2d7ccf8e5de29f456d5e1df798f949b"; };
 
   };
 
@@ -63,7 +63,7 @@ static const char GETDETECTAREA[] = "lexxauto_msgs/GetDetectArea";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->count >> (8 * 0)) & 0xFF;
@@ -72,7 +72,7 @@ static const char GETDETECTAREA[] = "lexxauto_msgs/GetDetectArea";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       this->count =  ((uint16_t) (*(inbuffer + offset)));
@@ -81,8 +81,8 @@ static const char GETDETECTAREA[] = "lexxauto_msgs/GetDetectArea";
      return offset;
     }
 
-    const char * getType(){ return GETDETECTAREA; };
-    const char * getMD5(){ return "fc61a3bbca4151f48faa118eae33fa03"; };
+    virtual const char * getType() override { return GETDETECTAREA; };
+    virtual const char * getMD5() override { return "fc61a3bbca4151f48faa118eae33fa03"; };
 
   };
 

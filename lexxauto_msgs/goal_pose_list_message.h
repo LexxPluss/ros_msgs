@@ -34,15 +34,15 @@ namespace lexxauto_msgs
       _w_type * w;
 
     goal_pose_list_message():
-      area_name_length(0), area_name(NULL),
-      x_length(0), x(NULL),
-      y_length(0), y(NULL),
-      z_length(0), z(NULL),
-      w_length(0), w(NULL)
+      area_name_length(0), st_area_name(), area_name(nullptr),
+      x_length(0), st_x(), x(nullptr),
+      y_length(0), st_y(), y(nullptr),
+      z_length(0), st_z(), z(nullptr),
+      w_length(0), st_w(), w(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->area_name_length >> (8 * 0)) & 0xFF;
@@ -128,7 +128,7 @@ namespace lexxauto_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t area_name_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -242,8 +242,8 @@ namespace lexxauto_msgs
      return offset;
     }
 
-    const char * getType(){ return "lexxauto_msgs/goal_pose_list_message"; };
-    const char * getMD5(){ return "a5475a7ae2fd9ac126709fe22bf98032"; };
+    virtual const char * getType() override { return "lexxauto_msgs/goal_pose_list_message"; };
+    virtual const char * getMD5() override { return "a5475a7ae2fd9ac126709fe22bf98032"; };
 
   };
 

@@ -44,7 +44,7 @@ namespace lexxauto_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -113,7 +113,7 @@ namespace lexxauto_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -191,8 +191,8 @@ namespace lexxauto_msgs
      return offset;
     }
 
-    const char * getType(){ return "lexxauto_msgs/selecting_sensors"; };
-    const char * getMD5(){ return "86cc3865de40f9b4e32710ac7911e640"; };
+    virtual const char * getType() override { return "lexxauto_msgs/selecting_sensors"; };
+    virtual const char * getMD5() override { return "86cc3865de40f9b4e32710ac7911e640"; };
 
   };
 

@@ -21,7 +21,7 @@ static const char CHECKOUTAREA[] = "lexxauto_msgs/CheckoutArea";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -37,7 +37,7 @@ static const char CHECKOUTAREA[] = "lexxauto_msgs/CheckoutArea";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -54,8 +54,8 @@ static const char CHECKOUTAREA[] = "lexxauto_msgs/CheckoutArea";
      return offset;
     }
 
-    const char * getType(){ return CHECKOUTAREA; };
-    const char * getMD5(){ return "111cdf31bb21a92caec984ab9f39ae90"; };
+    virtual const char * getType() override { return CHECKOUTAREA; };
+    virtual const char * getMD5() override { return "111cdf31bb21a92caec984ab9f39ae90"; };
 
   };
 
@@ -70,7 +70,7 @@ static const char CHECKOUTAREA[] = "lexxauto_msgs/CheckoutArea";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_result = strlen(this->result);
@@ -81,7 +81,7 @@ static const char CHECKOUTAREA[] = "lexxauto_msgs/CheckoutArea";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_result;
@@ -96,8 +96,8 @@ static const char CHECKOUTAREA[] = "lexxauto_msgs/CheckoutArea";
      return offset;
     }
 
-    const char * getType(){ return CHECKOUTAREA; };
-    const char * getMD5(){ return "c22f2a1ed8654a0b365f1bb3f7ff2c0f"; };
+    virtual const char * getType() override { return CHECKOUTAREA; };
+    virtual const char * getMD5() override { return "c22f2a1ed8654a0b365f1bb3f7ff2c0f"; };
 
   };
 

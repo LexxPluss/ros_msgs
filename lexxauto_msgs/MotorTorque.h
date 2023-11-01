@@ -15,9 +15,9 @@ namespace lexxauto_msgs
     public:
       typedef std_msgs::Header _header_type;
       _header_type header;
-      typedef float _torque_right_type;
+      typedef double _torque_right_type;
       _torque_right_type torque_right;
-      typedef float _torque_left_type;
+      typedef double _torque_left_type;
       _torque_left_type torque_left;
 
     MotorTorque():
@@ -27,26 +27,80 @@ namespace lexxauto_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
-      offset += serializeAvrFloat64(outbuffer + offset, this->torque_right);
-      offset += serializeAvrFloat64(outbuffer + offset, this->torque_left);
+      union {
+        double real;
+        uint64_t base;
+      } u_torque_right;
+      u_torque_right.real = this->torque_right;
+      *(outbuffer + offset + 0) = (u_torque_right.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_torque_right.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_torque_right.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_torque_right.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_torque_right.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_torque_right.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_torque_right.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_torque_right.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->torque_right);
+      union {
+        double real;
+        uint64_t base;
+      } u_torque_left;
+      u_torque_left.real = this->torque_left;
+      *(outbuffer + offset + 0) = (u_torque_left.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_torque_left.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_torque_left.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_torque_left.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_torque_left.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_torque_left.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_torque_left.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_torque_left.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->torque_left);
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->torque_right));
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->torque_left));
+      union {
+        double real;
+        uint64_t base;
+      } u_torque_right;
+      u_torque_right.base = 0;
+      u_torque_right.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_torque_right.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_torque_right.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_torque_right.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_torque_right.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_torque_right.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_torque_right.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_torque_right.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->torque_right = u_torque_right.real;
+      offset += sizeof(this->torque_right);
+      union {
+        double real;
+        uint64_t base;
+      } u_torque_left;
+      u_torque_left.base = 0;
+      u_torque_left.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_torque_left.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_torque_left.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_torque_left.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_torque_left.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_torque_left.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_torque_left.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_torque_left.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->torque_left = u_torque_left.real;
+      offset += sizeof(this->torque_left);
      return offset;
     }
 
-    const char * getType(){ return "lexxauto_msgs/MotorTorque"; };
-    const char * getMD5(){ return "158c6b7898104d490d30b44b6795ed08"; };
+    virtual const char * getType() override { return "lexxauto_msgs/MotorTorque"; };
+    virtual const char * getMD5() override { return "158c6b7898104d490d30b44b6795ed08"; };
 
   };
 

@@ -21,7 +21,7 @@ static const char GETOCCUPANCY[] = "lexxauto_msgs/GetOccupancy";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_area_name = strlen(this->area_name);
@@ -32,7 +32,7 @@ static const char GETOCCUPANCY[] = "lexxauto_msgs/GetOccupancy";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_area_name;
@@ -47,8 +47,8 @@ static const char GETOCCUPANCY[] = "lexxauto_msgs/GetOccupancy";
      return offset;
     }
 
-    const char * getType(){ return GETOCCUPANCY; };
-    const char * getMD5(){ return "a2d7ccf8e5de29f456d5e1df798f949b"; };
+    virtual const char * getType() override { return GETOCCUPANCY; };
+    virtual const char * getMD5() override { return "a2d7ccf8e5de29f456d5e1df798f949b"; };
 
   };
 
@@ -63,7 +63,7 @@ static const char GETOCCUPANCY[] = "lexxauto_msgs/GetOccupancy";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_answer = strlen(this->answer);
@@ -74,7 +74,7 @@ static const char GETOCCUPANCY[] = "lexxauto_msgs/GetOccupancy";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_answer;
@@ -89,8 +89,8 @@ static const char GETOCCUPANCY[] = "lexxauto_msgs/GetOccupancy";
      return offset;
     }
 
-    const char * getType(){ return GETOCCUPANCY; };
-    const char * getMD5(){ return "d7e708f879c94bb931716d8f4f130f30"; };
+    virtual const char * getType() override { return GETOCCUPANCY; };
+    virtual const char * getMD5() override { return "d7e708f879c94bb931716d8f4f130f30"; };
 
   };
 

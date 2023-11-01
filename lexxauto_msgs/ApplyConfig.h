@@ -23,11 +23,11 @@ static const char APPLYCONFIG[] = "lexxauto_msgs/ApplyConfig";
 
     ApplyConfigRequest():
       config_count(0),
-      config_length(0), config(NULL)
+      config_length(0), st_config(), config(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -51,7 +51,7 @@ static const char APPLYCONFIG[] = "lexxauto_msgs/ApplyConfig";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -80,8 +80,8 @@ static const char APPLYCONFIG[] = "lexxauto_msgs/ApplyConfig";
      return offset;
     }
 
-    const char * getType(){ return APPLYCONFIG; };
-    const char * getMD5(){ return "be3abc3c0faf32c5fae53ad5c998d09b"; };
+    virtual const char * getType() override { return APPLYCONFIG; };
+    virtual const char * getMD5() override { return "be3abc3c0faf32c5fae53ad5c998d09b"; };
 
   };
 
@@ -96,7 +96,7 @@ static const char APPLYCONFIG[] = "lexxauto_msgs/ApplyConfig";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -109,7 +109,7 @@ static const char APPLYCONFIG[] = "lexxauto_msgs/ApplyConfig";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -123,8 +123,8 @@ static const char APPLYCONFIG[] = "lexxauto_msgs/ApplyConfig";
      return offset;
     }
 
-    const char * getType(){ return APPLYCONFIG; };
-    const char * getMD5(){ return "358e233cde0c8a8bcfea4ce193f8fc15"; };
+    virtual const char * getType() override { return APPLYCONFIG; };
+    virtual const char * getMD5() override { return "358e233cde0c8a8bcfea4ce193f8fc15"; };
 
   };
 

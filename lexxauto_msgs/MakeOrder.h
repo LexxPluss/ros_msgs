@@ -23,11 +23,11 @@ static const char MAKEORDER[] = "lexxauto_msgs/MakeOrder";
 
     MakeOrderRequest():
       modes_count(0),
-      modes_length(0), modes(NULL)
+      modes_length(0), st_modes(), modes(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -51,7 +51,7 @@ static const char MAKEORDER[] = "lexxauto_msgs/MakeOrder";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -80,8 +80,8 @@ static const char MAKEORDER[] = "lexxauto_msgs/MakeOrder";
      return offset;
     }
 
-    const char * getType(){ return MAKEORDER; };
-    const char * getMD5(){ return "51fca2d5abe487fccd839a838189b9ba"; };
+    virtual const char * getType() override { return MAKEORDER; };
+    virtual const char * getMD5() override { return "51fca2d5abe487fccd839a838189b9ba"; };
 
   };
 
@@ -96,7 +96,7 @@ static const char MAKEORDER[] = "lexxauto_msgs/MakeOrder";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -109,7 +109,7 @@ static const char MAKEORDER[] = "lexxauto_msgs/MakeOrder";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -123,8 +123,8 @@ static const char MAKEORDER[] = "lexxauto_msgs/MakeOrder";
      return offset;
     }
 
-    const char * getType(){ return MAKEORDER; };
-    const char * getMD5(){ return "eb13ac1f1354ccecb7941ee8fa2192e8"; };
+    virtual const char * getType() override { return MAKEORDER; };
+    virtual const char * getMD5() override { return "eb13ac1f1354ccecb7941ee8fa2192e8"; };
 
   };
 

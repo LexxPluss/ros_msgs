@@ -38,11 +38,11 @@ namespace lexxauto_msgs
       actuator_num(0),
       mode(0),
       is_connect(0),
-      value_length(0), value(NULL)
+      value_length(0), st_value(), value(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -79,7 +79,7 @@ namespace lexxauto_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -123,8 +123,8 @@ namespace lexxauto_msgs
      return offset;
     }
 
-    const char * getType(){ return "lexxauto_msgs/ActuatorRequestPosition"; };
-    const char * getMD5(){ return "d86e2500fb9b095e8273c3cca4fa8926"; };
+    virtual const char * getType() override { return "lexxauto_msgs/ActuatorRequestPosition"; };
+    virtual const char * getMD5() override { return "d86e2500fb9b095e8273c3cca4fa8926"; };
 
   };
 

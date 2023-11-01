@@ -21,7 +21,7 @@ static const char LOADESTIMATE[] = "lexxauto_msgs/LoadEstimate";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -34,7 +34,7 @@ static const char LOADESTIMATE[] = "lexxauto_msgs/LoadEstimate";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -48,8 +48,8 @@ static const char LOADESTIMATE[] = "lexxauto_msgs/LoadEstimate";
      return offset;
     }
 
-    const char * getType(){ return LOADESTIMATE; };
-    const char * getMD5(){ return "21d6e6219bb24519cf50e59f608b3c8e"; };
+    virtual const char * getType() override { return LOADESTIMATE; };
+    virtual const char * getMD5() override { return "21d6e6219bb24519cf50e59f608b3c8e"; };
 
   };
 
@@ -64,7 +64,7 @@ static const char LOADESTIMATE[] = "lexxauto_msgs/LoadEstimate";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -77,7 +77,7 @@ static const char LOADESTIMATE[] = "lexxauto_msgs/LoadEstimate";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -91,8 +91,8 @@ static const char LOADESTIMATE[] = "lexxauto_msgs/LoadEstimate";
      return offset;
     }
 
-    const char * getType(){ return LOADESTIMATE; };
-    const char * getMD5(){ return "358e233cde0c8a8bcfea4ce193f8fc15"; };
+    virtual const char * getType() override { return LOADESTIMATE; };
+    virtual const char * getMD5() override { return "358e233cde0c8a8bcfea4ce193f8fc15"; };
 
   };
 

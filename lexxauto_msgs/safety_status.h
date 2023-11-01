@@ -56,7 +56,7 @@ namespace lexxauto_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_status = strlen(this->status);
@@ -127,7 +127,7 @@ namespace lexxauto_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_status;
@@ -250,8 +250,8 @@ namespace lexxauto_msgs
      return offset;
     }
 
-    const char * getType(){ return "lexxauto_msgs/safety_status"; };
-    const char * getMD5(){ return "ed319ffddee0e01056836e5c39c4da0a"; };
+    virtual const char * getType() override { return "lexxauto_msgs/safety_status"; };
+    virtual const char * getMD5() override { return "ed319ffddee0e01056836e5c39c4da0a"; };
 
   };
 

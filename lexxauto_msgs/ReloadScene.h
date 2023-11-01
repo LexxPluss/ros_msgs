@@ -18,20 +18,20 @@ static const char RELOADSCENE[] = "lexxauto_msgs/ReloadScene";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
      return offset;
     }
 
-    const char * getType(){ return RELOADSCENE; };
-    const char * getMD5(){ return "d41d8cd98f00b204e9800998ecf8427e"; };
+    virtual const char * getType() override { return RELOADSCENE; };
+    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
 
   };
 
@@ -46,7 +46,7 @@ static const char RELOADSCENE[] = "lexxauto_msgs/ReloadScene";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -59,7 +59,7 @@ static const char RELOADSCENE[] = "lexxauto_msgs/ReloadScene";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -73,8 +73,8 @@ static const char RELOADSCENE[] = "lexxauto_msgs/ReloadScene";
      return offset;
     }
 
-    const char * getType(){ return RELOADSCENE; };
-    const char * getMD5(){ return "eb13ac1f1354ccecb7941ee8fa2192e8"; };
+    virtual const char * getType() override { return RELOADSCENE; };
+    virtual const char * getMD5() override { return "eb13ac1f1354ccecb7941ee8fa2192e8"; };
 
   };
 

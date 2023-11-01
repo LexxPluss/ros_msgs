@@ -35,12 +35,12 @@ namespace lexxauto_msgs
       current(),
       total_elapsed_sec(0),
       progress(0),
-      plan_length(0), plan(NULL),
-      history_length(0), history(NULL)
+      plan_length(0), st_plan(), plan(nullptr),
+      history_length(0), st_history(), history(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_status = strlen(this->status);
@@ -83,7 +83,7 @@ namespace lexxauto_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_status;
@@ -139,8 +139,8 @@ namespace lexxauto_msgs
      return offset;
     }
 
-    const char * getType(){ return "lexxauto_msgs/OrderInfo"; };
-    const char * getMD5(){ return "fbc54f988a34eae496a546b1b7342146"; };
+    virtual const char * getType() override { return "lexxauto_msgs/OrderInfo"; };
+    virtual const char * getMD5() override { return "fbc54f988a34eae496a546b1b7342146"; };
 
   };
 

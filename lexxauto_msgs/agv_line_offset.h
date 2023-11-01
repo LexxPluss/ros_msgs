@@ -26,13 +26,13 @@ namespace lexxauto_msgs
       _end_offset_type * end_offset;
 
     agv_line_offset():
-      id_length(0), id(NULL),
-      start_offset_length(0), start_offset(NULL),
-      end_offset_length(0), end_offset(NULL)
+      id_length(0), st_id(), id(nullptr),
+      start_offset_length(0), st_start_offset(), start_offset(nullptr),
+      end_offset_length(0), st_end_offset(), end_offset(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->id_length >> (8 * 0)) & 0xFF;
@@ -89,7 +89,7 @@ namespace lexxauto_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t id_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -161,8 +161,8 @@ namespace lexxauto_msgs
      return offset;
     }
 
-    const char * getType(){ return "lexxauto_msgs/agv_line_offset"; };
-    const char * getMD5(){ return "f94f611a11d5c55304318ce92b841390"; };
+    virtual const char * getType() override { return "lexxauto_msgs/agv_line_offset"; };
+    virtual const char * getMD5() override { return "f94f611a11d5c55304318ce92b841390"; };
 
   };
 

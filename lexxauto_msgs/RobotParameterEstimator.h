@@ -12,29 +12,29 @@ namespace lexxauto_msgs
   class RobotParameterEstimator : public ros::Msg
   {
     public:
-      typedef float _estimated_mass_type;
+      typedef double _estimated_mass_type;
       _estimated_mass_type estimated_mass;
-      typedef float _estimated_mass_orig_type;
+      typedef double _estimated_mass_orig_type;
       _estimated_mass_orig_type estimated_mass_orig;
-      typedef float _estimated_mass_stddev_type;
+      typedef double _estimated_mass_stddev_type;
       _estimated_mass_stddev_type estimated_mass_stddev;
-      typedef float _estimated_inertia_type;
+      typedef double _estimated_inertia_type;
       _estimated_inertia_type estimated_inertia;
-      typedef float _estimated_inertia_orig_type;
+      typedef double _estimated_inertia_orig_type;
       _estimated_inertia_orig_type estimated_inertia_orig;
-      typedef float _estimated_inertia_stddev_type;
+      typedef double _estimated_inertia_stddev_type;
       _estimated_inertia_stddev_type estimated_inertia_stddev;
-      typedef float _current_accel_ax_type;
+      typedef double _current_accel_ax_type;
       _current_accel_ax_type current_accel_ax;
-      typedef float _current_accel_wz_type;
+      typedef double _current_accel_wz_type;
       _current_accel_wz_type current_accel_wz;
-      typedef float _torque_sum_highest_weight_type;
+      typedef double _torque_sum_highest_weight_type;
       _torque_sum_highest_weight_type torque_sum_highest_weight;
-      typedef float _torque_sum_lowest_weight_type;
+      typedef double _torque_sum_lowest_weight_type;
       _torque_sum_lowest_weight_type torque_sum_lowest_weight;
-      typedef float _torque_friction_type;
+      typedef double _torque_friction_type;
       _torque_friction_type torque_friction;
-      typedef float _acc_minus_fric_type;
+      typedef double _acc_minus_fric_type;
       _acc_minus_fric_type acc_minus_fric;
       typedef int32_t _param_update_mode_type;
       _param_update_mode_type param_update_mode;
@@ -56,21 +56,177 @@ namespace lexxauto_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
-      offset += serializeAvrFloat64(outbuffer + offset, this->estimated_mass);
-      offset += serializeAvrFloat64(outbuffer + offset, this->estimated_mass_orig);
-      offset += serializeAvrFloat64(outbuffer + offset, this->estimated_mass_stddev);
-      offset += serializeAvrFloat64(outbuffer + offset, this->estimated_inertia);
-      offset += serializeAvrFloat64(outbuffer + offset, this->estimated_inertia_orig);
-      offset += serializeAvrFloat64(outbuffer + offset, this->estimated_inertia_stddev);
-      offset += serializeAvrFloat64(outbuffer + offset, this->current_accel_ax);
-      offset += serializeAvrFloat64(outbuffer + offset, this->current_accel_wz);
-      offset += serializeAvrFloat64(outbuffer + offset, this->torque_sum_highest_weight);
-      offset += serializeAvrFloat64(outbuffer + offset, this->torque_sum_lowest_weight);
-      offset += serializeAvrFloat64(outbuffer + offset, this->torque_friction);
-      offset += serializeAvrFloat64(outbuffer + offset, this->acc_minus_fric);
+      union {
+        double real;
+        uint64_t base;
+      } u_estimated_mass;
+      u_estimated_mass.real = this->estimated_mass;
+      *(outbuffer + offset + 0) = (u_estimated_mass.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_estimated_mass.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_estimated_mass.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_estimated_mass.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_estimated_mass.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_estimated_mass.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_estimated_mass.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_estimated_mass.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->estimated_mass);
+      union {
+        double real;
+        uint64_t base;
+      } u_estimated_mass_orig;
+      u_estimated_mass_orig.real = this->estimated_mass_orig;
+      *(outbuffer + offset + 0) = (u_estimated_mass_orig.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_estimated_mass_orig.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_estimated_mass_orig.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_estimated_mass_orig.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_estimated_mass_orig.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_estimated_mass_orig.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_estimated_mass_orig.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_estimated_mass_orig.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->estimated_mass_orig);
+      union {
+        double real;
+        uint64_t base;
+      } u_estimated_mass_stddev;
+      u_estimated_mass_stddev.real = this->estimated_mass_stddev;
+      *(outbuffer + offset + 0) = (u_estimated_mass_stddev.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_estimated_mass_stddev.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_estimated_mass_stddev.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_estimated_mass_stddev.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_estimated_mass_stddev.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_estimated_mass_stddev.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_estimated_mass_stddev.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_estimated_mass_stddev.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->estimated_mass_stddev);
+      union {
+        double real;
+        uint64_t base;
+      } u_estimated_inertia;
+      u_estimated_inertia.real = this->estimated_inertia;
+      *(outbuffer + offset + 0) = (u_estimated_inertia.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_estimated_inertia.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_estimated_inertia.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_estimated_inertia.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_estimated_inertia.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_estimated_inertia.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_estimated_inertia.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_estimated_inertia.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->estimated_inertia);
+      union {
+        double real;
+        uint64_t base;
+      } u_estimated_inertia_orig;
+      u_estimated_inertia_orig.real = this->estimated_inertia_orig;
+      *(outbuffer + offset + 0) = (u_estimated_inertia_orig.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_estimated_inertia_orig.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_estimated_inertia_orig.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_estimated_inertia_orig.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_estimated_inertia_orig.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_estimated_inertia_orig.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_estimated_inertia_orig.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_estimated_inertia_orig.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->estimated_inertia_orig);
+      union {
+        double real;
+        uint64_t base;
+      } u_estimated_inertia_stddev;
+      u_estimated_inertia_stddev.real = this->estimated_inertia_stddev;
+      *(outbuffer + offset + 0) = (u_estimated_inertia_stddev.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_estimated_inertia_stddev.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_estimated_inertia_stddev.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_estimated_inertia_stddev.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_estimated_inertia_stddev.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_estimated_inertia_stddev.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_estimated_inertia_stddev.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_estimated_inertia_stddev.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->estimated_inertia_stddev);
+      union {
+        double real;
+        uint64_t base;
+      } u_current_accel_ax;
+      u_current_accel_ax.real = this->current_accel_ax;
+      *(outbuffer + offset + 0) = (u_current_accel_ax.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_current_accel_ax.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_current_accel_ax.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_current_accel_ax.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_current_accel_ax.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_current_accel_ax.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_current_accel_ax.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_current_accel_ax.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->current_accel_ax);
+      union {
+        double real;
+        uint64_t base;
+      } u_current_accel_wz;
+      u_current_accel_wz.real = this->current_accel_wz;
+      *(outbuffer + offset + 0) = (u_current_accel_wz.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_current_accel_wz.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_current_accel_wz.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_current_accel_wz.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_current_accel_wz.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_current_accel_wz.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_current_accel_wz.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_current_accel_wz.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->current_accel_wz);
+      union {
+        double real;
+        uint64_t base;
+      } u_torque_sum_highest_weight;
+      u_torque_sum_highest_weight.real = this->torque_sum_highest_weight;
+      *(outbuffer + offset + 0) = (u_torque_sum_highest_weight.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_torque_sum_highest_weight.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_torque_sum_highest_weight.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_torque_sum_highest_weight.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_torque_sum_highest_weight.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_torque_sum_highest_weight.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_torque_sum_highest_weight.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_torque_sum_highest_weight.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->torque_sum_highest_weight);
+      union {
+        double real;
+        uint64_t base;
+      } u_torque_sum_lowest_weight;
+      u_torque_sum_lowest_weight.real = this->torque_sum_lowest_weight;
+      *(outbuffer + offset + 0) = (u_torque_sum_lowest_weight.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_torque_sum_lowest_weight.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_torque_sum_lowest_weight.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_torque_sum_lowest_weight.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_torque_sum_lowest_weight.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_torque_sum_lowest_weight.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_torque_sum_lowest_weight.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_torque_sum_lowest_weight.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->torque_sum_lowest_weight);
+      union {
+        double real;
+        uint64_t base;
+      } u_torque_friction;
+      u_torque_friction.real = this->torque_friction;
+      *(outbuffer + offset + 0) = (u_torque_friction.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_torque_friction.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_torque_friction.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_torque_friction.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_torque_friction.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_torque_friction.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_torque_friction.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_torque_friction.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->torque_friction);
+      union {
+        double real;
+        uint64_t base;
+      } u_acc_minus_fric;
+      u_acc_minus_fric.real = this->acc_minus_fric;
+      *(outbuffer + offset + 0) = (u_acc_minus_fric.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_acc_minus_fric.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_acc_minus_fric.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_acc_minus_fric.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_acc_minus_fric.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_acc_minus_fric.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_acc_minus_fric.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_acc_minus_fric.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->acc_minus_fric);
       union {
         int32_t real;
         uint32_t base;
@@ -84,21 +240,189 @@ namespace lexxauto_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->estimated_mass));
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->estimated_mass_orig));
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->estimated_mass_stddev));
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->estimated_inertia));
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->estimated_inertia_orig));
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->estimated_inertia_stddev));
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->current_accel_ax));
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->current_accel_wz));
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->torque_sum_highest_weight));
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->torque_sum_lowest_weight));
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->torque_friction));
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->acc_minus_fric));
+      union {
+        double real;
+        uint64_t base;
+      } u_estimated_mass;
+      u_estimated_mass.base = 0;
+      u_estimated_mass.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_estimated_mass.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_estimated_mass.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_estimated_mass.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_estimated_mass.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_estimated_mass.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_estimated_mass.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_estimated_mass.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->estimated_mass = u_estimated_mass.real;
+      offset += sizeof(this->estimated_mass);
+      union {
+        double real;
+        uint64_t base;
+      } u_estimated_mass_orig;
+      u_estimated_mass_orig.base = 0;
+      u_estimated_mass_orig.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_estimated_mass_orig.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_estimated_mass_orig.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_estimated_mass_orig.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_estimated_mass_orig.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_estimated_mass_orig.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_estimated_mass_orig.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_estimated_mass_orig.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->estimated_mass_orig = u_estimated_mass_orig.real;
+      offset += sizeof(this->estimated_mass_orig);
+      union {
+        double real;
+        uint64_t base;
+      } u_estimated_mass_stddev;
+      u_estimated_mass_stddev.base = 0;
+      u_estimated_mass_stddev.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_estimated_mass_stddev.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_estimated_mass_stddev.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_estimated_mass_stddev.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_estimated_mass_stddev.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_estimated_mass_stddev.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_estimated_mass_stddev.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_estimated_mass_stddev.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->estimated_mass_stddev = u_estimated_mass_stddev.real;
+      offset += sizeof(this->estimated_mass_stddev);
+      union {
+        double real;
+        uint64_t base;
+      } u_estimated_inertia;
+      u_estimated_inertia.base = 0;
+      u_estimated_inertia.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_estimated_inertia.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_estimated_inertia.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_estimated_inertia.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_estimated_inertia.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_estimated_inertia.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_estimated_inertia.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_estimated_inertia.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->estimated_inertia = u_estimated_inertia.real;
+      offset += sizeof(this->estimated_inertia);
+      union {
+        double real;
+        uint64_t base;
+      } u_estimated_inertia_orig;
+      u_estimated_inertia_orig.base = 0;
+      u_estimated_inertia_orig.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_estimated_inertia_orig.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_estimated_inertia_orig.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_estimated_inertia_orig.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_estimated_inertia_orig.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_estimated_inertia_orig.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_estimated_inertia_orig.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_estimated_inertia_orig.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->estimated_inertia_orig = u_estimated_inertia_orig.real;
+      offset += sizeof(this->estimated_inertia_orig);
+      union {
+        double real;
+        uint64_t base;
+      } u_estimated_inertia_stddev;
+      u_estimated_inertia_stddev.base = 0;
+      u_estimated_inertia_stddev.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_estimated_inertia_stddev.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_estimated_inertia_stddev.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_estimated_inertia_stddev.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_estimated_inertia_stddev.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_estimated_inertia_stddev.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_estimated_inertia_stddev.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_estimated_inertia_stddev.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->estimated_inertia_stddev = u_estimated_inertia_stddev.real;
+      offset += sizeof(this->estimated_inertia_stddev);
+      union {
+        double real;
+        uint64_t base;
+      } u_current_accel_ax;
+      u_current_accel_ax.base = 0;
+      u_current_accel_ax.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_current_accel_ax.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_current_accel_ax.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_current_accel_ax.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_current_accel_ax.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_current_accel_ax.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_current_accel_ax.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_current_accel_ax.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->current_accel_ax = u_current_accel_ax.real;
+      offset += sizeof(this->current_accel_ax);
+      union {
+        double real;
+        uint64_t base;
+      } u_current_accel_wz;
+      u_current_accel_wz.base = 0;
+      u_current_accel_wz.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_current_accel_wz.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_current_accel_wz.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_current_accel_wz.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_current_accel_wz.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_current_accel_wz.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_current_accel_wz.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_current_accel_wz.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->current_accel_wz = u_current_accel_wz.real;
+      offset += sizeof(this->current_accel_wz);
+      union {
+        double real;
+        uint64_t base;
+      } u_torque_sum_highest_weight;
+      u_torque_sum_highest_weight.base = 0;
+      u_torque_sum_highest_weight.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_torque_sum_highest_weight.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_torque_sum_highest_weight.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_torque_sum_highest_weight.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_torque_sum_highest_weight.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_torque_sum_highest_weight.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_torque_sum_highest_weight.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_torque_sum_highest_weight.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->torque_sum_highest_weight = u_torque_sum_highest_weight.real;
+      offset += sizeof(this->torque_sum_highest_weight);
+      union {
+        double real;
+        uint64_t base;
+      } u_torque_sum_lowest_weight;
+      u_torque_sum_lowest_weight.base = 0;
+      u_torque_sum_lowest_weight.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_torque_sum_lowest_weight.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_torque_sum_lowest_weight.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_torque_sum_lowest_weight.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_torque_sum_lowest_weight.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_torque_sum_lowest_weight.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_torque_sum_lowest_weight.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_torque_sum_lowest_weight.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->torque_sum_lowest_weight = u_torque_sum_lowest_weight.real;
+      offset += sizeof(this->torque_sum_lowest_weight);
+      union {
+        double real;
+        uint64_t base;
+      } u_torque_friction;
+      u_torque_friction.base = 0;
+      u_torque_friction.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_torque_friction.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_torque_friction.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_torque_friction.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_torque_friction.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_torque_friction.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_torque_friction.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_torque_friction.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->torque_friction = u_torque_friction.real;
+      offset += sizeof(this->torque_friction);
+      union {
+        double real;
+        uint64_t base;
+      } u_acc_minus_fric;
+      u_acc_minus_fric.base = 0;
+      u_acc_minus_fric.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_acc_minus_fric.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_acc_minus_fric.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_acc_minus_fric.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_acc_minus_fric.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_acc_minus_fric.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_acc_minus_fric.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_acc_minus_fric.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->acc_minus_fric = u_acc_minus_fric.real;
+      offset += sizeof(this->acc_minus_fric);
       union {
         int32_t real;
         uint32_t base;
@@ -113,8 +437,8 @@ namespace lexxauto_msgs
      return offset;
     }
 
-    const char * getType(){ return "lexxauto_msgs/RobotParameterEstimator"; };
-    const char * getMD5(){ return "f49b103dffe87fbccc18cfe9e57b3d36"; };
+    virtual const char * getType() override { return "lexxauto_msgs/RobotParameterEstimator"; };
+    virtual const char * getMD5() override { return "f49b103dffe87fbccc18cfe9e57b3d36"; };
 
   };
 

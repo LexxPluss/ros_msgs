@@ -26,7 +26,7 @@ namespace lexxauto_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->r >> (8 * 0)) & 0xFF;
@@ -38,7 +38,7 @@ namespace lexxauto_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       this->r =  ((uint8_t) (*(inbuffer + offset)));
@@ -50,8 +50,8 @@ namespace lexxauto_msgs
      return offset;
     }
 
-    const char * getType(){ return "lexxauto_msgs/Led"; };
-    const char * getMD5(){ return "353891e354491c51aabe32df673fb446"; };
+    virtual const char * getType() override { return "lexxauto_msgs/Led"; };
+    virtual const char * getMD5() override { return "353891e354491c51aabe32df673fb446"; };
 
   };
 

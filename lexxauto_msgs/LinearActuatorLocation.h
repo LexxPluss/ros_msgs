@@ -25,7 +25,7 @@ static const char LINEARACTUATORLOCATION[] = "lexxauto_msgs/LinearActuatorLocati
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->location.serialize(outbuffer + offset);
@@ -33,7 +33,7 @@ static const char LINEARACTUATORLOCATION[] = "lexxauto_msgs/LinearActuatorLocati
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->location.deserialize(inbuffer + offset);
@@ -41,8 +41,8 @@ static const char LINEARACTUATORLOCATION[] = "lexxauto_msgs/LinearActuatorLocati
      return offset;
     }
 
-    const char * getType(){ return LINEARACTUATORLOCATION; };
-    const char * getMD5(){ return "233717714d5d6ce08cc97deba21614e1"; };
+    virtual const char * getType() override { return LINEARACTUATORLOCATION; };
+    virtual const char * getMD5() override { return "233717714d5d6ce08cc97deba21614e1"; };
 
   };
 
@@ -60,7 +60,7 @@ static const char LINEARACTUATORLOCATION[] = "lexxauto_msgs/LinearActuatorLocati
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -74,7 +74,7 @@ static const char LINEARACTUATORLOCATION[] = "lexxauto_msgs/LinearActuatorLocati
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -89,8 +89,8 @@ static const char LINEARACTUATORLOCATION[] = "lexxauto_msgs/LinearActuatorLocati
      return offset;
     }
 
-    const char * getType(){ return LINEARACTUATORLOCATION; };
-    const char * getMD5(){ return "db4cf476d2c9433365fff9e7dafab092"; };
+    virtual const char * getType() override { return LINEARACTUATORLOCATION; };
+    virtual const char * getMD5() override { return "db4cf476d2c9433365fff9e7dafab092"; };
 
   };
 

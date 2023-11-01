@@ -19,11 +19,11 @@ namespace lexxauto_msgs
       _actuators_type * actuators;
 
     LinearActuatorControlArray():
-      actuators_length(0), actuators(NULL)
+      actuators_length(0), st_actuators(), actuators(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->actuators_length >> (8 * 0)) & 0xFF;
@@ -37,7 +37,7 @@ namespace lexxauto_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t actuators_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -55,8 +55,8 @@ namespace lexxauto_msgs
      return offset;
     }
 
-    const char * getType(){ return "lexxauto_msgs/LinearActuatorControlArray"; };
-    const char * getMD5(){ return "9dd2f2a1c6947ac9a26290cf77454ae9"; };
+    virtual const char * getType() override { return "lexxauto_msgs/LinearActuatorControlArray"; };
+    virtual const char * getMD5() override { return "9dd2f2a1c6947ac9a26290cf77454ae9"; };
 
   };
 

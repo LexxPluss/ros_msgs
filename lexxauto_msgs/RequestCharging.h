@@ -29,7 +29,7 @@ namespace lexxauto_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -65,7 +65,7 @@ namespace lexxauto_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -111,8 +111,8 @@ namespace lexxauto_msgs
      return offset;
     }
 
-    const char * getType(){ return "lexxauto_msgs/RequestCharging"; };
-    const char * getMD5(){ return "aa9775caac9760004f7b249bf217f02c"; };
+    virtual const char * getType() override { return "lexxauto_msgs/RequestCharging"; };
+    virtual const char * getMD5() override { return "aa9775caac9760004f7b249bf217f02c"; };
 
   };
 

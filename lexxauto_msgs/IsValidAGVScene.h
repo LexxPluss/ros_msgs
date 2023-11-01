@@ -21,7 +21,7 @@ static const char ISVALIDAGVSCENE[] = "lexxauto_msgs/IsValidAGVScene";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_agv_scene_name = strlen(this->agv_scene_name);
@@ -32,7 +32,7 @@ static const char ISVALIDAGVSCENE[] = "lexxauto_msgs/IsValidAGVScene";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_agv_scene_name;
@@ -47,8 +47,8 @@ static const char ISVALIDAGVSCENE[] = "lexxauto_msgs/IsValidAGVScene";
      return offset;
     }
 
-    const char * getType(){ return ISVALIDAGVSCENE; };
-    const char * getMD5(){ return "68fac8258b95a017c6f752dab9c894bc"; };
+    virtual const char * getType() override { return ISVALIDAGVSCENE; };
+    virtual const char * getMD5() override { return "68fac8258b95a017c6f752dab9c894bc"; };
 
   };
 
@@ -63,7 +63,7 @@ static const char ISVALIDAGVSCENE[] = "lexxauto_msgs/IsValidAGVScene";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -76,7 +76,7 @@ static const char ISVALIDAGVSCENE[] = "lexxauto_msgs/IsValidAGVScene";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -90,8 +90,8 @@ static const char ISVALIDAGVSCENE[] = "lexxauto_msgs/IsValidAGVScene";
      return offset;
     }
 
-    const char * getType(){ return ISVALIDAGVSCENE; };
-    const char * getMD5(){ return "bf1cc1d88653066e9e865909bc165df6"; };
+    virtual const char * getType() override { return ISVALIDAGVSCENE; };
+    virtual const char * getMD5() override { return "bf1cc1d88653066e9e865909bc165df6"; };
 
   };
 

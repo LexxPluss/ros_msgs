@@ -25,11 +25,11 @@ namespace lexxauto_msgs
     Mode():
       name(""),
       params_count(0),
-      params_length(0), params(NULL)
+      params_length(0), st_params(), params(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
@@ -58,7 +58,7 @@ namespace lexxauto_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_name;
@@ -96,8 +96,8 @@ namespace lexxauto_msgs
      return offset;
     }
 
-    const char * getType(){ return "lexxauto_msgs/Mode"; };
-    const char * getMD5(){ return "921c334871eab97e9422ba7ba93a127b"; };
+    virtual const char * getType() override { return "lexxauto_msgs/Mode"; };
+    virtual const char * getMD5() override { return "921c334871eab97e9422ba7ba93a127b"; };
 
   };
 
