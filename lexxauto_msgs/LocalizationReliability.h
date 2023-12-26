@@ -16,9 +16,9 @@ namespace lexxauto_msgs
       _average_distance_type average_distance;
       typedef float _distance_score_type;
       _distance_score_type distance_score;
-      typedef float _match_points_type;
+      typedef uint16_t _match_points_type;
       _match_points_type match_points;
-      typedef float _all_points_type;
+      typedef uint16_t _all_points_type;
       _all_points_type all_points;
 
     LocalizationReliability():
@@ -52,25 +52,11 @@ namespace lexxauto_msgs
       *(outbuffer + offset + 2) = (u_distance_score.base >> (8 * 2)) & 0xFF;
       *(outbuffer + offset + 3) = (u_distance_score.base >> (8 * 3)) & 0xFF;
       offset += sizeof(this->distance_score);
-      union {
-        float real;
-        uint32_t base;
-      } u_match_points;
-      u_match_points.real = this->match_points;
-      *(outbuffer + offset + 0) = (u_match_points.base >> (8 * 0)) & 0xFF;
-      *(outbuffer + offset + 1) = (u_match_points.base >> (8 * 1)) & 0xFF;
-      *(outbuffer + offset + 2) = (u_match_points.base >> (8 * 2)) & 0xFF;
-      *(outbuffer + offset + 3) = (u_match_points.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 0) = (this->match_points >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->match_points >> (8 * 1)) & 0xFF;
       offset += sizeof(this->match_points);
-      union {
-        float real;
-        uint32_t base;
-      } u_all_points;
-      u_all_points.real = this->all_points;
-      *(outbuffer + offset + 0) = (u_all_points.base >> (8 * 0)) & 0xFF;
-      *(outbuffer + offset + 1) = (u_all_points.base >> (8 * 1)) & 0xFF;
-      *(outbuffer + offset + 2) = (u_all_points.base >> (8 * 2)) & 0xFF;
-      *(outbuffer + offset + 3) = (u_all_points.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 0) = (this->all_points >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->all_points >> (8 * 1)) & 0xFF;
       offset += sizeof(this->all_points);
       return offset;
     }
@@ -100,33 +86,17 @@ namespace lexxauto_msgs
       u_distance_score.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
       this->distance_score = u_distance_score.real;
       offset += sizeof(this->distance_score);
-      union {
-        float real;
-        uint32_t base;
-      } u_match_points;
-      u_match_points.base = 0;
-      u_match_points.base |= ((uint32_t) (*(inbuffer + offset + 0))) << (8 * 0);
-      u_match_points.base |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1);
-      u_match_points.base |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2);
-      u_match_points.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
-      this->match_points = u_match_points.real;
+      this->match_points =  ((uint16_t) (*(inbuffer + offset)));
+      this->match_points |= ((uint16_t) (*(inbuffer + offset + 1))) << (8 * 1);
       offset += sizeof(this->match_points);
-      union {
-        float real;
-        uint32_t base;
-      } u_all_points;
-      u_all_points.base = 0;
-      u_all_points.base |= ((uint32_t) (*(inbuffer + offset + 0))) << (8 * 0);
-      u_all_points.base |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1);
-      u_all_points.base |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2);
-      u_all_points.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
-      this->all_points = u_all_points.real;
+      this->all_points =  ((uint16_t) (*(inbuffer + offset)));
+      this->all_points |= ((uint16_t) (*(inbuffer + offset + 1))) << (8 * 1);
       offset += sizeof(this->all_points);
      return offset;
     }
 
     virtual const char * getType() override { return "lexxauto_msgs/LocalizationReliability"; };
-    virtual const char * getMD5() override { return "e84a6d8b1de98cfdb8abdfde01ca6010"; };
+    virtual const char * getMD5() override { return "fa5860954547e3a17dbb31024e8a944b"; };
 
   };
 

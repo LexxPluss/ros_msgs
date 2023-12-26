@@ -28,14 +28,14 @@ namespace lexxauto_msgs
       _current_accel_ax_type current_accel_ax;
       typedef double _current_accel_wz_type;
       _current_accel_wz_type current_accel_wz;
-      typedef double _torque_sum_highest_weight_type;
-      _torque_sum_highest_weight_type torque_sum_highest_weight;
-      typedef double _torque_sum_lowest_weight_type;
-      _torque_sum_lowest_weight_type torque_sum_lowest_weight;
-      typedef double _torque_friction_type;
-      _torque_friction_type torque_friction;
-      typedef double _acc_minus_fric_type;
-      _acc_minus_fric_type acc_minus_fric;
+      typedef double _a1_type;
+      _a1_type a1;
+      typedef double _b1_type;
+      _b1_type b1;
+      typedef double _a2_type;
+      _a2_type a2;
+      typedef double _b2_type;
+      _b2_type b2;
       typedef int32_t _param_update_mode_type;
       _param_update_mode_type param_update_mode;
 
@@ -48,10 +48,10 @@ namespace lexxauto_msgs
       estimated_inertia_stddev(0),
       current_accel_ax(0),
       current_accel_wz(0),
-      torque_sum_highest_weight(0),
-      torque_sum_lowest_weight(0),
-      torque_friction(0),
-      acc_minus_fric(0),
+      a1(0),
+      b1(0),
+      a2(0),
+      b2(0),
       param_update_mode(0)
     {
     }
@@ -174,59 +174,59 @@ namespace lexxauto_msgs
       union {
         double real;
         uint64_t base;
-      } u_torque_sum_highest_weight;
-      u_torque_sum_highest_weight.real = this->torque_sum_highest_weight;
-      *(outbuffer + offset + 0) = (u_torque_sum_highest_weight.base >> (8 * 0)) & 0xFF;
-      *(outbuffer + offset + 1) = (u_torque_sum_highest_weight.base >> (8 * 1)) & 0xFF;
-      *(outbuffer + offset + 2) = (u_torque_sum_highest_weight.base >> (8 * 2)) & 0xFF;
-      *(outbuffer + offset + 3) = (u_torque_sum_highest_weight.base >> (8 * 3)) & 0xFF;
-      *(outbuffer + offset + 4) = (u_torque_sum_highest_weight.base >> (8 * 4)) & 0xFF;
-      *(outbuffer + offset + 5) = (u_torque_sum_highest_weight.base >> (8 * 5)) & 0xFF;
-      *(outbuffer + offset + 6) = (u_torque_sum_highest_weight.base >> (8 * 6)) & 0xFF;
-      *(outbuffer + offset + 7) = (u_torque_sum_highest_weight.base >> (8 * 7)) & 0xFF;
-      offset += sizeof(this->torque_sum_highest_weight);
+      } u_a1;
+      u_a1.real = this->a1;
+      *(outbuffer + offset + 0) = (u_a1.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_a1.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_a1.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_a1.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_a1.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_a1.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_a1.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_a1.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->a1);
       union {
         double real;
         uint64_t base;
-      } u_torque_sum_lowest_weight;
-      u_torque_sum_lowest_weight.real = this->torque_sum_lowest_weight;
-      *(outbuffer + offset + 0) = (u_torque_sum_lowest_weight.base >> (8 * 0)) & 0xFF;
-      *(outbuffer + offset + 1) = (u_torque_sum_lowest_weight.base >> (8 * 1)) & 0xFF;
-      *(outbuffer + offset + 2) = (u_torque_sum_lowest_weight.base >> (8 * 2)) & 0xFF;
-      *(outbuffer + offset + 3) = (u_torque_sum_lowest_weight.base >> (8 * 3)) & 0xFF;
-      *(outbuffer + offset + 4) = (u_torque_sum_lowest_weight.base >> (8 * 4)) & 0xFF;
-      *(outbuffer + offset + 5) = (u_torque_sum_lowest_weight.base >> (8 * 5)) & 0xFF;
-      *(outbuffer + offset + 6) = (u_torque_sum_lowest_weight.base >> (8 * 6)) & 0xFF;
-      *(outbuffer + offset + 7) = (u_torque_sum_lowest_weight.base >> (8 * 7)) & 0xFF;
-      offset += sizeof(this->torque_sum_lowest_weight);
+      } u_b1;
+      u_b1.real = this->b1;
+      *(outbuffer + offset + 0) = (u_b1.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_b1.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_b1.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_b1.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_b1.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_b1.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_b1.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_b1.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->b1);
       union {
         double real;
         uint64_t base;
-      } u_torque_friction;
-      u_torque_friction.real = this->torque_friction;
-      *(outbuffer + offset + 0) = (u_torque_friction.base >> (8 * 0)) & 0xFF;
-      *(outbuffer + offset + 1) = (u_torque_friction.base >> (8 * 1)) & 0xFF;
-      *(outbuffer + offset + 2) = (u_torque_friction.base >> (8 * 2)) & 0xFF;
-      *(outbuffer + offset + 3) = (u_torque_friction.base >> (8 * 3)) & 0xFF;
-      *(outbuffer + offset + 4) = (u_torque_friction.base >> (8 * 4)) & 0xFF;
-      *(outbuffer + offset + 5) = (u_torque_friction.base >> (8 * 5)) & 0xFF;
-      *(outbuffer + offset + 6) = (u_torque_friction.base >> (8 * 6)) & 0xFF;
-      *(outbuffer + offset + 7) = (u_torque_friction.base >> (8 * 7)) & 0xFF;
-      offset += sizeof(this->torque_friction);
+      } u_a2;
+      u_a2.real = this->a2;
+      *(outbuffer + offset + 0) = (u_a2.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_a2.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_a2.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_a2.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_a2.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_a2.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_a2.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_a2.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->a2);
       union {
         double real;
         uint64_t base;
-      } u_acc_minus_fric;
-      u_acc_minus_fric.real = this->acc_minus_fric;
-      *(outbuffer + offset + 0) = (u_acc_minus_fric.base >> (8 * 0)) & 0xFF;
-      *(outbuffer + offset + 1) = (u_acc_minus_fric.base >> (8 * 1)) & 0xFF;
-      *(outbuffer + offset + 2) = (u_acc_minus_fric.base >> (8 * 2)) & 0xFF;
-      *(outbuffer + offset + 3) = (u_acc_minus_fric.base >> (8 * 3)) & 0xFF;
-      *(outbuffer + offset + 4) = (u_acc_minus_fric.base >> (8 * 4)) & 0xFF;
-      *(outbuffer + offset + 5) = (u_acc_minus_fric.base >> (8 * 5)) & 0xFF;
-      *(outbuffer + offset + 6) = (u_acc_minus_fric.base >> (8 * 6)) & 0xFF;
-      *(outbuffer + offset + 7) = (u_acc_minus_fric.base >> (8 * 7)) & 0xFF;
-      offset += sizeof(this->acc_minus_fric);
+      } u_b2;
+      u_b2.real = this->b2;
+      *(outbuffer + offset + 0) = (u_b2.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_b2.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_b2.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_b2.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_b2.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_b2.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_b2.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_b2.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->b2);
       union {
         int32_t real;
         uint32_t base;
@@ -366,63 +366,63 @@ namespace lexxauto_msgs
       union {
         double real;
         uint64_t base;
-      } u_torque_sum_highest_weight;
-      u_torque_sum_highest_weight.base = 0;
-      u_torque_sum_highest_weight.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
-      u_torque_sum_highest_weight.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
-      u_torque_sum_highest_weight.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
-      u_torque_sum_highest_weight.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
-      u_torque_sum_highest_weight.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
-      u_torque_sum_highest_weight.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
-      u_torque_sum_highest_weight.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
-      u_torque_sum_highest_weight.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
-      this->torque_sum_highest_weight = u_torque_sum_highest_weight.real;
-      offset += sizeof(this->torque_sum_highest_weight);
+      } u_a1;
+      u_a1.base = 0;
+      u_a1.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_a1.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_a1.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_a1.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_a1.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_a1.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_a1.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_a1.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->a1 = u_a1.real;
+      offset += sizeof(this->a1);
       union {
         double real;
         uint64_t base;
-      } u_torque_sum_lowest_weight;
-      u_torque_sum_lowest_weight.base = 0;
-      u_torque_sum_lowest_weight.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
-      u_torque_sum_lowest_weight.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
-      u_torque_sum_lowest_weight.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
-      u_torque_sum_lowest_weight.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
-      u_torque_sum_lowest_weight.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
-      u_torque_sum_lowest_weight.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
-      u_torque_sum_lowest_weight.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
-      u_torque_sum_lowest_weight.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
-      this->torque_sum_lowest_weight = u_torque_sum_lowest_weight.real;
-      offset += sizeof(this->torque_sum_lowest_weight);
+      } u_b1;
+      u_b1.base = 0;
+      u_b1.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_b1.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_b1.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_b1.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_b1.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_b1.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_b1.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_b1.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->b1 = u_b1.real;
+      offset += sizeof(this->b1);
       union {
         double real;
         uint64_t base;
-      } u_torque_friction;
-      u_torque_friction.base = 0;
-      u_torque_friction.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
-      u_torque_friction.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
-      u_torque_friction.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
-      u_torque_friction.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
-      u_torque_friction.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
-      u_torque_friction.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
-      u_torque_friction.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
-      u_torque_friction.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
-      this->torque_friction = u_torque_friction.real;
-      offset += sizeof(this->torque_friction);
+      } u_a2;
+      u_a2.base = 0;
+      u_a2.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_a2.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_a2.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_a2.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_a2.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_a2.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_a2.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_a2.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->a2 = u_a2.real;
+      offset += sizeof(this->a2);
       union {
         double real;
         uint64_t base;
-      } u_acc_minus_fric;
-      u_acc_minus_fric.base = 0;
-      u_acc_minus_fric.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
-      u_acc_minus_fric.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
-      u_acc_minus_fric.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
-      u_acc_minus_fric.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
-      u_acc_minus_fric.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
-      u_acc_minus_fric.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
-      u_acc_minus_fric.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
-      u_acc_minus_fric.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
-      this->acc_minus_fric = u_acc_minus_fric.real;
-      offset += sizeof(this->acc_minus_fric);
+      } u_b2;
+      u_b2.base = 0;
+      u_b2.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_b2.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_b2.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_b2.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_b2.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_b2.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_b2.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_b2.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->b2 = u_b2.real;
+      offset += sizeof(this->b2);
       union {
         int32_t real;
         uint32_t base;
@@ -438,7 +438,7 @@ namespace lexxauto_msgs
     }
 
     virtual const char * getType() override { return "lexxauto_msgs/RobotParameterEstimator"; };
-    virtual const char * getMD5() override { return "f49b103dffe87fbccc18cfe9e57b3d36"; };
+    virtual const char * getMD5() override { return "368fc013414cdd365a8494b8c33fd7f5"; };
 
   };
 
