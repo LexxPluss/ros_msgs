@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "std_msgs/Header.h"
 
 namespace lexxauto_msgs
 {
@@ -12,91 +13,198 @@ namespace lexxauto_msgs
   class LocalizationReliability : public ros::Msg
   {
     public:
-      typedef float _average_distance_type;
-      _average_distance_type average_distance;
-      typedef float _distance_score_type;
-      _distance_score_type distance_score;
-      typedef uint16_t _match_points_type;
-      _match_points_type match_points;
-      typedef uint16_t _all_points_type;
-      _all_points_type all_points;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef float _covar_mat_reliability_type;
+      _covar_mat_reliability_type covar_mat_reliability;
+      typedef float _odom_drift_reliability_type;
+      _odom_drift_reliability_type odom_drift_reliability;
+      typedef float _odom_jump_reliability_type;
+      _odom_jump_reliability_type odom_jump_reliability;
+      typedef float _amcl_pose_within_map_reliability_type;
+      _amcl_pose_within_map_reliability_type amcl_pose_within_map_reliability;
+      typedef float _particlecloud_spread_reliability_type;
+      _particlecloud_spread_reliability_type particlecloud_spread_reliability;
+      typedef float _scan_map_matching_reliability_type;
+      _scan_map_matching_reliability_type scan_map_matching_reliability;
+      typedef float _total_estimated_reliability_type;
+      _total_estimated_reliability_type total_estimated_reliability;
 
     LocalizationReliability():
-      average_distance(0),
-      distance_score(0),
-      match_points(0),
-      all_points(0)
+      header(),
+      covar_mat_reliability(0),
+      odom_drift_reliability(0),
+      odom_jump_reliability(0),
+      amcl_pose_within_map_reliability(0),
+      particlecloud_spread_reliability(0),
+      scan_map_matching_reliability(0),
+      total_estimated_reliability(0)
     {
     }
 
     virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
+      offset += this->header.serialize(outbuffer + offset);
       union {
         float real;
         uint32_t base;
-      } u_average_distance;
-      u_average_distance.real = this->average_distance;
-      *(outbuffer + offset + 0) = (u_average_distance.base >> (8 * 0)) & 0xFF;
-      *(outbuffer + offset + 1) = (u_average_distance.base >> (8 * 1)) & 0xFF;
-      *(outbuffer + offset + 2) = (u_average_distance.base >> (8 * 2)) & 0xFF;
-      *(outbuffer + offset + 3) = (u_average_distance.base >> (8 * 3)) & 0xFF;
-      offset += sizeof(this->average_distance);
+      } u_covar_mat_reliability;
+      u_covar_mat_reliability.real = this->covar_mat_reliability;
+      *(outbuffer + offset + 0) = (u_covar_mat_reliability.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_covar_mat_reliability.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_covar_mat_reliability.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_covar_mat_reliability.base >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->covar_mat_reliability);
       union {
         float real;
         uint32_t base;
-      } u_distance_score;
-      u_distance_score.real = this->distance_score;
-      *(outbuffer + offset + 0) = (u_distance_score.base >> (8 * 0)) & 0xFF;
-      *(outbuffer + offset + 1) = (u_distance_score.base >> (8 * 1)) & 0xFF;
-      *(outbuffer + offset + 2) = (u_distance_score.base >> (8 * 2)) & 0xFF;
-      *(outbuffer + offset + 3) = (u_distance_score.base >> (8 * 3)) & 0xFF;
-      offset += sizeof(this->distance_score);
-      *(outbuffer + offset + 0) = (this->match_points >> (8 * 0)) & 0xFF;
-      *(outbuffer + offset + 1) = (this->match_points >> (8 * 1)) & 0xFF;
-      offset += sizeof(this->match_points);
-      *(outbuffer + offset + 0) = (this->all_points >> (8 * 0)) & 0xFF;
-      *(outbuffer + offset + 1) = (this->all_points >> (8 * 1)) & 0xFF;
-      offset += sizeof(this->all_points);
+      } u_odom_drift_reliability;
+      u_odom_drift_reliability.real = this->odom_drift_reliability;
+      *(outbuffer + offset + 0) = (u_odom_drift_reliability.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_odom_drift_reliability.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_odom_drift_reliability.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_odom_drift_reliability.base >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->odom_drift_reliability);
+      union {
+        float real;
+        uint32_t base;
+      } u_odom_jump_reliability;
+      u_odom_jump_reliability.real = this->odom_jump_reliability;
+      *(outbuffer + offset + 0) = (u_odom_jump_reliability.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_odom_jump_reliability.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_odom_jump_reliability.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_odom_jump_reliability.base >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->odom_jump_reliability);
+      union {
+        float real;
+        uint32_t base;
+      } u_amcl_pose_within_map_reliability;
+      u_amcl_pose_within_map_reliability.real = this->amcl_pose_within_map_reliability;
+      *(outbuffer + offset + 0) = (u_amcl_pose_within_map_reliability.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_amcl_pose_within_map_reliability.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_amcl_pose_within_map_reliability.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_amcl_pose_within_map_reliability.base >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->amcl_pose_within_map_reliability);
+      union {
+        float real;
+        uint32_t base;
+      } u_particlecloud_spread_reliability;
+      u_particlecloud_spread_reliability.real = this->particlecloud_spread_reliability;
+      *(outbuffer + offset + 0) = (u_particlecloud_spread_reliability.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_particlecloud_spread_reliability.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_particlecloud_spread_reliability.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_particlecloud_spread_reliability.base >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->particlecloud_spread_reliability);
+      union {
+        float real;
+        uint32_t base;
+      } u_scan_map_matching_reliability;
+      u_scan_map_matching_reliability.real = this->scan_map_matching_reliability;
+      *(outbuffer + offset + 0) = (u_scan_map_matching_reliability.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_scan_map_matching_reliability.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_scan_map_matching_reliability.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_scan_map_matching_reliability.base >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->scan_map_matching_reliability);
+      union {
+        float real;
+        uint32_t base;
+      } u_total_estimated_reliability;
+      u_total_estimated_reliability.real = this->total_estimated_reliability;
+      *(outbuffer + offset + 0) = (u_total_estimated_reliability.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_total_estimated_reliability.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_total_estimated_reliability.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_total_estimated_reliability.base >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->total_estimated_reliability);
       return offset;
     }
 
     virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
+      offset += this->header.deserialize(inbuffer + offset);
       union {
         float real;
         uint32_t base;
-      } u_average_distance;
-      u_average_distance.base = 0;
-      u_average_distance.base |= ((uint32_t) (*(inbuffer + offset + 0))) << (8 * 0);
-      u_average_distance.base |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1);
-      u_average_distance.base |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2);
-      u_average_distance.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
-      this->average_distance = u_average_distance.real;
-      offset += sizeof(this->average_distance);
+      } u_covar_mat_reliability;
+      u_covar_mat_reliability.base = 0;
+      u_covar_mat_reliability.base |= ((uint32_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_covar_mat_reliability.base |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_covar_mat_reliability.base |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_covar_mat_reliability.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      this->covar_mat_reliability = u_covar_mat_reliability.real;
+      offset += sizeof(this->covar_mat_reliability);
       union {
         float real;
         uint32_t base;
-      } u_distance_score;
-      u_distance_score.base = 0;
-      u_distance_score.base |= ((uint32_t) (*(inbuffer + offset + 0))) << (8 * 0);
-      u_distance_score.base |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1);
-      u_distance_score.base |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2);
-      u_distance_score.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
-      this->distance_score = u_distance_score.real;
-      offset += sizeof(this->distance_score);
-      this->match_points =  ((uint16_t) (*(inbuffer + offset)));
-      this->match_points |= ((uint16_t) (*(inbuffer + offset + 1))) << (8 * 1);
-      offset += sizeof(this->match_points);
-      this->all_points =  ((uint16_t) (*(inbuffer + offset)));
-      this->all_points |= ((uint16_t) (*(inbuffer + offset + 1))) << (8 * 1);
-      offset += sizeof(this->all_points);
+      } u_odom_drift_reliability;
+      u_odom_drift_reliability.base = 0;
+      u_odom_drift_reliability.base |= ((uint32_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_odom_drift_reliability.base |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_odom_drift_reliability.base |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_odom_drift_reliability.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      this->odom_drift_reliability = u_odom_drift_reliability.real;
+      offset += sizeof(this->odom_drift_reliability);
+      union {
+        float real;
+        uint32_t base;
+      } u_odom_jump_reliability;
+      u_odom_jump_reliability.base = 0;
+      u_odom_jump_reliability.base |= ((uint32_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_odom_jump_reliability.base |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_odom_jump_reliability.base |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_odom_jump_reliability.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      this->odom_jump_reliability = u_odom_jump_reliability.real;
+      offset += sizeof(this->odom_jump_reliability);
+      union {
+        float real;
+        uint32_t base;
+      } u_amcl_pose_within_map_reliability;
+      u_amcl_pose_within_map_reliability.base = 0;
+      u_amcl_pose_within_map_reliability.base |= ((uint32_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_amcl_pose_within_map_reliability.base |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_amcl_pose_within_map_reliability.base |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_amcl_pose_within_map_reliability.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      this->amcl_pose_within_map_reliability = u_amcl_pose_within_map_reliability.real;
+      offset += sizeof(this->amcl_pose_within_map_reliability);
+      union {
+        float real;
+        uint32_t base;
+      } u_particlecloud_spread_reliability;
+      u_particlecloud_spread_reliability.base = 0;
+      u_particlecloud_spread_reliability.base |= ((uint32_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_particlecloud_spread_reliability.base |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_particlecloud_spread_reliability.base |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_particlecloud_spread_reliability.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      this->particlecloud_spread_reliability = u_particlecloud_spread_reliability.real;
+      offset += sizeof(this->particlecloud_spread_reliability);
+      union {
+        float real;
+        uint32_t base;
+      } u_scan_map_matching_reliability;
+      u_scan_map_matching_reliability.base = 0;
+      u_scan_map_matching_reliability.base |= ((uint32_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_scan_map_matching_reliability.base |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_scan_map_matching_reliability.base |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_scan_map_matching_reliability.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      this->scan_map_matching_reliability = u_scan_map_matching_reliability.real;
+      offset += sizeof(this->scan_map_matching_reliability);
+      union {
+        float real;
+        uint32_t base;
+      } u_total_estimated_reliability;
+      u_total_estimated_reliability.base = 0;
+      u_total_estimated_reliability.base |= ((uint32_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_total_estimated_reliability.base |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_total_estimated_reliability.base |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_total_estimated_reliability.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      this->total_estimated_reliability = u_total_estimated_reliability.real;
+      offset += sizeof(this->total_estimated_reliability);
      return offset;
     }
 
     virtual const char * getType() override { return "lexxauto_msgs/LocalizationReliability"; };
-    virtual const char * getMD5() override { return "fa5860954547e3a17dbb31024e8a944b"; };
+    virtual const char * getMD5() override { return "41512cc8d349ba1e32ae5969b7a1f46f"; };
 
   };
 
