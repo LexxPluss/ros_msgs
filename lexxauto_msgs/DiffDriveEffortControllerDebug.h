@@ -38,6 +38,24 @@ namespace lexxauto_msgs
       _adaptive_max_torque_type adaptive_max_torque;
       typedef double _adaptive_min_torque_type;
       _adaptive_min_torque_type adaptive_min_torque;
+      typedef double _max_torque_type;
+      _max_torque_type max_torque;
+      typedef double _min_torque_type;
+      _min_torque_type min_torque;
+      typedef double _wz_scale_type;
+      _wz_scale_type wz_scale;
+      typedef double _p_gain_type;
+      _p_gain_type p_gain;
+      typedef double _i_gain_type;
+      _i_gain_type i_gain;
+      typedef double _i_max_type;
+      _i_max_type i_max;
+      typedef double _d_gain_type;
+      _d_gain_type d_gain;
+      typedef double _ff_type;
+      _ff_type ff;
+      typedef double _static_fric_type;
+      _static_fric_type static_fric;
 
     DiffDriveEffortControllerDebug():
       cmd_vel_raw(),
@@ -51,7 +69,16 @@ namespace lexxauto_msgs
       adaptive_static_ff(0),
       adaptive_wz_scale(0),
       adaptive_max_torque(0),
-      adaptive_min_torque(0)
+      adaptive_min_torque(0),
+      max_torque(0),
+      min_torque(0),
+      wz_scale(0),
+      p_gain(0),
+      i_gain(0),
+      i_max(0),
+      d_gain(0),
+      ff(0),
+      static_fric(0)
     {
     }
 
@@ -148,6 +175,132 @@ namespace lexxauto_msgs
       *(outbuffer + offset + 6) = (u_adaptive_min_torque.base >> (8 * 6)) & 0xFF;
       *(outbuffer + offset + 7) = (u_adaptive_min_torque.base >> (8 * 7)) & 0xFF;
       offset += sizeof(this->adaptive_min_torque);
+      union {
+        double real;
+        uint64_t base;
+      } u_max_torque;
+      u_max_torque.real = this->max_torque;
+      *(outbuffer + offset + 0) = (u_max_torque.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_max_torque.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_max_torque.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_max_torque.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_max_torque.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_max_torque.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_max_torque.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_max_torque.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->max_torque);
+      union {
+        double real;
+        uint64_t base;
+      } u_min_torque;
+      u_min_torque.real = this->min_torque;
+      *(outbuffer + offset + 0) = (u_min_torque.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_min_torque.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_min_torque.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_min_torque.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_min_torque.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_min_torque.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_min_torque.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_min_torque.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->min_torque);
+      union {
+        double real;
+        uint64_t base;
+      } u_wz_scale;
+      u_wz_scale.real = this->wz_scale;
+      *(outbuffer + offset + 0) = (u_wz_scale.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_wz_scale.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_wz_scale.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_wz_scale.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_wz_scale.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_wz_scale.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_wz_scale.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_wz_scale.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->wz_scale);
+      union {
+        double real;
+        uint64_t base;
+      } u_p_gain;
+      u_p_gain.real = this->p_gain;
+      *(outbuffer + offset + 0) = (u_p_gain.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_p_gain.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_p_gain.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_p_gain.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_p_gain.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_p_gain.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_p_gain.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_p_gain.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->p_gain);
+      union {
+        double real;
+        uint64_t base;
+      } u_i_gain;
+      u_i_gain.real = this->i_gain;
+      *(outbuffer + offset + 0) = (u_i_gain.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_i_gain.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_i_gain.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_i_gain.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_i_gain.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_i_gain.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_i_gain.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_i_gain.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->i_gain);
+      union {
+        double real;
+        uint64_t base;
+      } u_i_max;
+      u_i_max.real = this->i_max;
+      *(outbuffer + offset + 0) = (u_i_max.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_i_max.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_i_max.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_i_max.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_i_max.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_i_max.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_i_max.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_i_max.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->i_max);
+      union {
+        double real;
+        uint64_t base;
+      } u_d_gain;
+      u_d_gain.real = this->d_gain;
+      *(outbuffer + offset + 0) = (u_d_gain.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_d_gain.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_d_gain.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_d_gain.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_d_gain.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_d_gain.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_d_gain.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_d_gain.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->d_gain);
+      union {
+        double real;
+        uint64_t base;
+      } u_ff;
+      u_ff.real = this->ff;
+      *(outbuffer + offset + 0) = (u_ff.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_ff.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_ff.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_ff.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_ff.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_ff.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_ff.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_ff.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->ff);
+      union {
+        double real;
+        uint64_t base;
+      } u_static_fric;
+      u_static_fric.real = this->static_fric;
+      *(outbuffer + offset + 0) = (u_static_fric.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_static_fric.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_static_fric.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_static_fric.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_static_fric.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_static_fric.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_static_fric.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_static_fric.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->static_fric);
       return offset;
     }
 
@@ -250,11 +403,146 @@ namespace lexxauto_msgs
       u_adaptive_min_torque.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
       this->adaptive_min_torque = u_adaptive_min_torque.real;
       offset += sizeof(this->adaptive_min_torque);
+      union {
+        double real;
+        uint64_t base;
+      } u_max_torque;
+      u_max_torque.base = 0;
+      u_max_torque.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_max_torque.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_max_torque.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_max_torque.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_max_torque.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_max_torque.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_max_torque.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_max_torque.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->max_torque = u_max_torque.real;
+      offset += sizeof(this->max_torque);
+      union {
+        double real;
+        uint64_t base;
+      } u_min_torque;
+      u_min_torque.base = 0;
+      u_min_torque.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_min_torque.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_min_torque.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_min_torque.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_min_torque.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_min_torque.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_min_torque.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_min_torque.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->min_torque = u_min_torque.real;
+      offset += sizeof(this->min_torque);
+      union {
+        double real;
+        uint64_t base;
+      } u_wz_scale;
+      u_wz_scale.base = 0;
+      u_wz_scale.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_wz_scale.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_wz_scale.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_wz_scale.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_wz_scale.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_wz_scale.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_wz_scale.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_wz_scale.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->wz_scale = u_wz_scale.real;
+      offset += sizeof(this->wz_scale);
+      union {
+        double real;
+        uint64_t base;
+      } u_p_gain;
+      u_p_gain.base = 0;
+      u_p_gain.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_p_gain.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_p_gain.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_p_gain.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_p_gain.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_p_gain.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_p_gain.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_p_gain.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->p_gain = u_p_gain.real;
+      offset += sizeof(this->p_gain);
+      union {
+        double real;
+        uint64_t base;
+      } u_i_gain;
+      u_i_gain.base = 0;
+      u_i_gain.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_i_gain.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_i_gain.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_i_gain.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_i_gain.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_i_gain.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_i_gain.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_i_gain.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->i_gain = u_i_gain.real;
+      offset += sizeof(this->i_gain);
+      union {
+        double real;
+        uint64_t base;
+      } u_i_max;
+      u_i_max.base = 0;
+      u_i_max.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_i_max.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_i_max.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_i_max.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_i_max.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_i_max.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_i_max.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_i_max.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->i_max = u_i_max.real;
+      offset += sizeof(this->i_max);
+      union {
+        double real;
+        uint64_t base;
+      } u_d_gain;
+      u_d_gain.base = 0;
+      u_d_gain.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_d_gain.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_d_gain.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_d_gain.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_d_gain.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_d_gain.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_d_gain.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_d_gain.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->d_gain = u_d_gain.real;
+      offset += sizeof(this->d_gain);
+      union {
+        double real;
+        uint64_t base;
+      } u_ff;
+      u_ff.base = 0;
+      u_ff.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_ff.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_ff.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_ff.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_ff.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_ff.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_ff.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_ff.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->ff = u_ff.real;
+      offset += sizeof(this->ff);
+      union {
+        double real;
+        uint64_t base;
+      } u_static_fric;
+      u_static_fric.base = 0;
+      u_static_fric.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_static_fric.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_static_fric.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_static_fric.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_static_fric.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_static_fric.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_static_fric.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_static_fric.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->static_fric = u_static_fric.real;
+      offset += sizeof(this->static_fric);
      return offset;
     }
 
     virtual const char * getType() override { return "lexxauto_msgs/DiffDriveEffortControllerDebug"; };
-    virtual const char * getMD5() override { return "5689093cea4053a0b72d5db2d3538474"; };
+    virtual const char * getMD5() override { return "2430f1cdf6af8dc5c8e24ee6504cdddf"; };
 
   };
 
