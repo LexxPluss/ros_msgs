@@ -16,7 +16,7 @@ namespace lexxauto_msgs
       _type_type type;
       typedef const char* _value_type;
       _value_type value;
-      enum { OPERATION_START = "start" };
+      enum { OPERATION_START = started };
 
     DeviceStatus():
       type(""),
@@ -65,7 +65,7 @@ namespace lexxauto_msgs
     }
 
     virtual const char * getType() override { return "lexxauto_msgs/DeviceStatus"; };
-    virtual const char * getMD5() override { return "450052eae73cd24f3409a97516261d1f"; };
+    virtual const char * getMD5() override { return "629503a010c256d316e3a2791a64a593"; };
 
   };
 
