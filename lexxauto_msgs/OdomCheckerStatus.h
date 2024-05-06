@@ -45,6 +45,10 @@ namespace lexxauto_msgs
       _left_wheel_acc_type left_wheel_acc;
       typedef double _right_wheel_acc_type;
       _right_wheel_acc_type right_wheel_acc;
+      typedef double _left_wheel_jerk_type;
+      _left_wheel_jerk_type left_wheel_jerk;
+      typedef double _right_wheel_jerk_type;
+      _right_wheel_jerk_type right_wheel_jerk;
       typedef bool _has_invalid_field_type;
       _has_invalid_field_type has_invalid_field;
       typedef bool _has_large_odom_diff_vx_type;
@@ -104,6 +108,8 @@ namespace lexxauto_msgs
       ay_from_odom(0),
       left_wheel_acc(0),
       right_wheel_acc(0),
+      left_wheel_jerk(0),
+      right_wheel_jerk(0),
       has_invalid_field(0),
       has_large_odom_diff_vx(0),
       has_large_odom_diff_wz(0),
@@ -328,6 +334,34 @@ namespace lexxauto_msgs
       *(outbuffer + offset + 6) = (u_right_wheel_acc.base >> (8 * 6)) & 0xFF;
       *(outbuffer + offset + 7) = (u_right_wheel_acc.base >> (8 * 7)) & 0xFF;
       offset += sizeof(this->right_wheel_acc);
+      union {
+        double real;
+        uint64_t base;
+      } u_left_wheel_jerk;
+      u_left_wheel_jerk.real = this->left_wheel_jerk;
+      *(outbuffer + offset + 0) = (u_left_wheel_jerk.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_left_wheel_jerk.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_left_wheel_jerk.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_left_wheel_jerk.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_left_wheel_jerk.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_left_wheel_jerk.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_left_wheel_jerk.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_left_wheel_jerk.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->left_wheel_jerk);
+      union {
+        double real;
+        uint64_t base;
+      } u_right_wheel_jerk;
+      u_right_wheel_jerk.real = this->right_wheel_jerk;
+      *(outbuffer + offset + 0) = (u_right_wheel_jerk.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_right_wheel_jerk.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_right_wheel_jerk.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_right_wheel_jerk.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_right_wheel_jerk.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_right_wheel_jerk.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_right_wheel_jerk.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_right_wheel_jerk.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->right_wheel_jerk);
       union {
         bool real;
         uint8_t base;
@@ -697,6 +731,36 @@ namespace lexxauto_msgs
       this->right_wheel_acc = u_right_wheel_acc.real;
       offset += sizeof(this->right_wheel_acc);
       union {
+        double real;
+        uint64_t base;
+      } u_left_wheel_jerk;
+      u_left_wheel_jerk.base = 0;
+      u_left_wheel_jerk.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_left_wheel_jerk.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_left_wheel_jerk.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_left_wheel_jerk.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_left_wheel_jerk.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_left_wheel_jerk.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_left_wheel_jerk.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_left_wheel_jerk.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->left_wheel_jerk = u_left_wheel_jerk.real;
+      offset += sizeof(this->left_wheel_jerk);
+      union {
+        double real;
+        uint64_t base;
+      } u_right_wheel_jerk;
+      u_right_wheel_jerk.base = 0;
+      u_right_wheel_jerk.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_right_wheel_jerk.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_right_wheel_jerk.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_right_wheel_jerk.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_right_wheel_jerk.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_right_wheel_jerk.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_right_wheel_jerk.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_right_wheel_jerk.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->right_wheel_jerk = u_right_wheel_jerk.real;
+      offset += sizeof(this->right_wheel_jerk);
+      union {
         bool real;
         uint8_t base;
       } u_has_invalid_field;
@@ -868,7 +932,7 @@ namespace lexxauto_msgs
     }
 
     virtual const char * getType() override { return "lexxauto_msgs/OdomCheckerStatus"; };
-    virtual const char * getMD5() override { return "bd56c303e822a42fcc8298b96445c04a"; };
+    virtual const char * getMD5() override { return "32a3c3f04dd4a944811e209d56df1c6e"; };
 
   };
 
