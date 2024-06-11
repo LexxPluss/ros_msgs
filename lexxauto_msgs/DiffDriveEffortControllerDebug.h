@@ -542,7 +542,7 @@ namespace lexxauto_msgs
     }
 
     virtual const char * getType() override { return "lexxauto_msgs/DiffDriveEffortControllerDebug"; };
-    virtual const char * getMD5() override { return "7e2343489fb8355ddf1963e5ca676128"; };
+    virtual const char * getMD5() override { return "2430f1cdf6af8dc5c8e24ee6504cdddf"; };
 
   };
 

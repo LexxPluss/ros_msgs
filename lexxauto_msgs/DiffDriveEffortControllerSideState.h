@@ -20,8 +20,6 @@ namespace lexxauto_msgs
       _measured_vel_filtered_type measured_vel_filtered;
       typedef double _measured_eff_type;
       _measured_eff_type measured_eff;
-      typedef double _measured_eff_nm_type;
-      _measured_eff_nm_type measured_eff_nm;
       typedef double _measured_vel_for_pid_type;
       _measured_vel_for_pid_type measured_vel_for_pid;
       typedef double _cmd_vel_raw_type;
@@ -46,15 +44,12 @@ namespace lexxauto_msgs
       _raw_cmd_eff_type raw_cmd_eff;
       typedef double _cmd_eff_type;
       _cmd_eff_type cmd_eff;
-      typedef double _cmd_eff_nm_type;
-      _cmd_eff_nm_type cmd_eff_nm;
 
     DiffDriveEffortControllerSideState():
       measured_timestamp(0),
       measured_vel_raw(0),
       measured_vel_filtered(0),
       measured_eff(0),
-      measured_eff_nm(0),
       measured_vel_for_pid(0),
       cmd_vel_raw(0),
       cmd_vel_filtered(0),
@@ -66,8 +61,7 @@ namespace lexxauto_msgs
       ff_eff(0),
       ff_static_fric_eff(0),
       raw_cmd_eff(0),
-      cmd_eff(0),
-      cmd_eff_nm(0)
+      cmd_eff(0)
     {
     }
 
@@ -130,20 +124,6 @@ namespace lexxauto_msgs
       *(outbuffer + offset + 6) = (u_measured_eff.base >> (8 * 6)) & 0xFF;
       *(outbuffer + offset + 7) = (u_measured_eff.base >> (8 * 7)) & 0xFF;
       offset += sizeof(this->measured_eff);
-      union {
-        double real;
-        uint64_t base;
-      } u_measured_eff_nm;
-      u_measured_eff_nm.real = this->measured_eff_nm;
-      *(outbuffer + offset + 0) = (u_measured_eff_nm.base >> (8 * 0)) & 0xFF;
-      *(outbuffer + offset + 1) = (u_measured_eff_nm.base >> (8 * 1)) & 0xFF;
-      *(outbuffer + offset + 2) = (u_measured_eff_nm.base >> (8 * 2)) & 0xFF;
-      *(outbuffer + offset + 3) = (u_measured_eff_nm.base >> (8 * 3)) & 0xFF;
-      *(outbuffer + offset + 4) = (u_measured_eff_nm.base >> (8 * 4)) & 0xFF;
-      *(outbuffer + offset + 5) = (u_measured_eff_nm.base >> (8 * 5)) & 0xFF;
-      *(outbuffer + offset + 6) = (u_measured_eff_nm.base >> (8 * 6)) & 0xFF;
-      *(outbuffer + offset + 7) = (u_measured_eff_nm.base >> (8 * 7)) & 0xFF;
-      offset += sizeof(this->measured_eff_nm);
       union {
         double real;
         uint64_t base;
@@ -312,20 +292,6 @@ namespace lexxauto_msgs
       *(outbuffer + offset + 6) = (u_cmd_eff.base >> (8 * 6)) & 0xFF;
       *(outbuffer + offset + 7) = (u_cmd_eff.base >> (8 * 7)) & 0xFF;
       offset += sizeof(this->cmd_eff);
-      union {
-        double real;
-        uint64_t base;
-      } u_cmd_eff_nm;
-      u_cmd_eff_nm.real = this->cmd_eff_nm;
-      *(outbuffer + offset + 0) = (u_cmd_eff_nm.base >> (8 * 0)) & 0xFF;
-      *(outbuffer + offset + 1) = (u_cmd_eff_nm.base >> (8 * 1)) & 0xFF;
-      *(outbuffer + offset + 2) = (u_cmd_eff_nm.base >> (8 * 2)) & 0xFF;
-      *(outbuffer + offset + 3) = (u_cmd_eff_nm.base >> (8 * 3)) & 0xFF;
-      *(outbuffer + offset + 4) = (u_cmd_eff_nm.base >> (8 * 4)) & 0xFF;
-      *(outbuffer + offset + 5) = (u_cmd_eff_nm.base >> (8 * 5)) & 0xFF;
-      *(outbuffer + offset + 6) = (u_cmd_eff_nm.base >> (8 * 6)) & 0xFF;
-      *(outbuffer + offset + 7) = (u_cmd_eff_nm.base >> (8 * 7)) & 0xFF;
-      offset += sizeof(this->cmd_eff_nm);
       return offset;
     }
 
@@ -392,21 +358,6 @@ namespace lexxauto_msgs
       u_measured_eff.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
       this->measured_eff = u_measured_eff.real;
       offset += sizeof(this->measured_eff);
-      union {
-        double real;
-        uint64_t base;
-      } u_measured_eff_nm;
-      u_measured_eff_nm.base = 0;
-      u_measured_eff_nm.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
-      u_measured_eff_nm.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
-      u_measured_eff_nm.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
-      u_measured_eff_nm.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
-      u_measured_eff_nm.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
-      u_measured_eff_nm.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
-      u_measured_eff_nm.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
-      u_measured_eff_nm.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
-      this->measured_eff_nm = u_measured_eff_nm.real;
-      offset += sizeof(this->measured_eff_nm);
       union {
         double real;
         uint64_t base;
@@ -587,26 +538,11 @@ namespace lexxauto_msgs
       u_cmd_eff.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
       this->cmd_eff = u_cmd_eff.real;
       offset += sizeof(this->cmd_eff);
-      union {
-        double real;
-        uint64_t base;
-      } u_cmd_eff_nm;
-      u_cmd_eff_nm.base = 0;
-      u_cmd_eff_nm.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
-      u_cmd_eff_nm.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
-      u_cmd_eff_nm.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
-      u_cmd_eff_nm.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
-      u_cmd_eff_nm.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
-      u_cmd_eff_nm.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
-      u_cmd_eff_nm.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
-      u_cmd_eff_nm.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
-      this->cmd_eff_nm = u_cmd_eff_nm.real;
-      offset += sizeof(this->cmd_eff_nm);
      return offset;
     }
 
     virtual const char * getType() override { return "lexxauto_msgs/DiffDriveEffortControllerSideState"; };
-    virtual const char * getMD5() override { return "03c56d6b55736de6a600a543afaf5a84"; };
+    virtual const char * getMD5() override { return "8f2a81319576e96fbca9d946c7ffc4ea"; };
 
   };
 
