@@ -13,6 +13,10 @@ namespace lexxauto_msgs
   class OrderInfo : public ros::Msg
   {
     public:
+      typedef int32_t _scenario_id_type;
+      _scenario_id_type scenario_id;
+      typedef const char* _task_uuid_type;
+      _task_uuid_type task_uuid;
       typedef const char* _status_type;
       _status_type status;
       typedef lexxauto_msgs::ModeInfo _current_type;
@@ -31,6 +35,8 @@ namespace lexxauto_msgs
       _history_type * history;
 
     OrderInfo():
+      scenario_id(0),
+      task_uuid(""),
       status(""),
       current(),
       total_elapsed_sec(0),
@@ -43,6 +49,21 @@ namespace lexxauto_msgs
     virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
+      union {
+        int32_t real;
+        uint32_t base;
+      } u_scenario_id;
+      u_scenario_id.real = this->scenario_id;
+      *(outbuffer + offset + 0) = (u_scenario_id.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_scenario_id.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_scenario_id.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_scenario_id.base >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->scenario_id);
+      uint32_t length_task_uuid = strlen(this->task_uuid);
+      varToArr(outbuffer + offset, length_task_uuid);
+      offset += 4;
+      memcpy(outbuffer + offset, this->task_uuid, length_task_uuid);
+      offset += length_task_uuid;
       uint32_t length_status = strlen(this->status);
       varToArr(outbuffer + offset, length_status);
       offset += 4;
@@ -86,6 +107,26 @@ namespace lexxauto_msgs
     virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
+      union {
+        int32_t real;
+        uint32_t base;
+      } u_scenario_id;
+      u_scenario_id.base = 0;
+      u_scenario_id.base |= ((uint32_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_scenario_id.base |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_scenario_id.base |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_scenario_id.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      this->scenario_id = u_scenario_id.real;
+      offset += sizeof(this->scenario_id);
+      uint32_t length_task_uuid;
+      arrToVar(length_task_uuid, (inbuffer + offset));
+      offset += 4;
+      for(unsigned int k= offset; k< offset+length_task_uuid; ++k){
+          inbuffer[k-1]=inbuffer[k];
+      }
+      inbuffer[offset+length_task_uuid-1]=0;
+      this->task_uuid = (char *)(inbuffer + offset-1);
+      offset += length_task_uuid;
       uint32_t length_status;
       arrToVar(length_status, (inbuffer + offset));
       offset += 4;
@@ -140,7 +181,7 @@ namespace lexxauto_msgs
     }
 
     virtual const char * getType() override { return "lexxauto_msgs/OrderInfo"; };
-    virtual const char * getMD5() override { return "fbc54f988a34eae496a546b1b7342146"; };
+    virtual const char * getMD5() override { return "cbb19be498214ca4ef144599e67842d5"; };
 
   };
 
