@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "std_msgs/Header.h"
 
 namespace lexxauto_msgs
 {
@@ -12,6 +13,8 @@ namespace lexxauto_msgs
   class WheelState : public ros::Msg
   {
     public:
+      typedef std_msgs::Header _header_type;
+      _header_type header;
       typedef double _eff_input_type;
       _eff_input_type eff_input;
       typedef double _pos_state_type;
@@ -22,6 +25,7 @@ namespace lexxauto_msgs
       _eff_state_type eff_state;
 
     WheelState():
+      header(),
       eff_input(0),
       pos_state(0),
       vel_state(0),
@@ -32,6 +36,7 @@ namespace lexxauto_msgs
     virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
+      offset += this->header.serialize(outbuffer + offset);
       union {
         double real;
         uint64_t base;
@@ -94,6 +99,7 @@ namespace lexxauto_msgs
     virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
+      offset += this->header.deserialize(inbuffer + offset);
       union {
         double real;
         uint64_t base;
@@ -158,7 +164,7 @@ namespace lexxauto_msgs
     }
 
     virtual const char * getType() override { return "lexxauto_msgs/WheelState"; };
-    virtual const char * getMD5() override { return "99443b445525cf30c997e36848e9e34b"; };
+    virtual const char * getMD5() override { return "57cb230f6136dcad768f8b2f64b8018f"; };
 
   };
 

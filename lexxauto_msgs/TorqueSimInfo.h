@@ -339,7 +339,7 @@ namespace lexxauto_msgs
     }
 
     virtual const char * getType() override { return "lexxauto_msgs/TorqueSimInfo"; };
-    virtual const char * getMD5() override { return "96ab28c9bfd3d7b2ac420a56f65b821f"; };
+    virtual const char * getMD5() override { return "e791ded9ac65de376e5684499a67f594"; };
 
   };
 
