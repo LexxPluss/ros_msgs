@@ -34,6 +34,7 @@ namespace lexxauto_msgs
       _lost_cart_type lost_cart;
       enum { CARRYING_MODE_SOLO = solo };
       enum { CARRYING_MODE_TUG_H = tug_h };
+      enum { CARRYING_MODE_TUG_L = tug_l };
       enum { CARRYING_MODE_TUNNELING = tunneling };
       enum { CARRYING_MODE_LIFT = lift };
       enum { FOOTPRINT_MODE_ORIGINAL = original };
@@ -186,7 +187,7 @@ namespace lexxauto_msgs
     }
 
     virtual const char * getType() override { return "lexxauto_msgs/CarryingInformation"; };
-    virtual const char * getMD5() override { return "bfcac7246553745d4aad542aa1262dde"; };
+    virtual const char * getMD5() override { return "e830c8eed08be193b8645d679115ab1e"; };
 
   };
 

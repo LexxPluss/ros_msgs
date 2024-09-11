@@ -1,5 +1,6 @@
-#ifndef _ROS_SERVICE_GoButton_h
-#define _ROS_SERVICE_GoButton_h
+#ifndef _ROS_lexxauto_msgs_ComeInfo_h
+#define _ROS_lexxauto_msgs_ComeInfo_h
+
 #include <stdint.h>
 #include <string.h>
 #include <stdlib.h>
@@ -8,9 +9,7 @@
 namespace lexxauto_msgs
 {
 
-static const char GOBUTTON[] = "lexxauto_msgs/GoButton";
-
-  class GoButtonRequest : public ros::Msg
+  class ComeInfo : public ros::Msg
   {
     public:
       typedef const char* _target_type;
@@ -18,7 +17,7 @@ static const char GOBUTTON[] = "lexxauto_msgs/GoButton";
       typedef const char* _arrival_slot_type;
       _arrival_slot_type arrival_slot;
 
-    GoButtonRequest():
+    ComeInfo():
       target(""),
       arrival_slot("")
     {
@@ -64,58 +63,9 @@ static const char GOBUTTON[] = "lexxauto_msgs/GoButton";
      return offset;
     }
 
-    virtual const char * getType() override { return GOBUTTON; };
+    virtual const char * getType() override { return "lexxauto_msgs/ComeInfo"; };
     virtual const char * getMD5() override { return "61e9bcae106bb1fab02f7fcce79c99a0"; };
 
-  };
-
-  class GoButtonResponse : public ros::Msg
-  {
-    public:
-      typedef bool _result_type;
-      _result_type result;
-
-    GoButtonResponse():
-      result(0)
-    {
-    }
-
-    virtual int serialize(unsigned char *outbuffer) const override
-    {
-      int offset = 0;
-      union {
-        bool real;
-        uint8_t base;
-      } u_result;
-      u_result.real = this->result;
-      *(outbuffer + offset + 0) = (u_result.base >> (8 * 0)) & 0xFF;
-      offset += sizeof(this->result);
-      return offset;
-    }
-
-    virtual int deserialize(unsigned char *inbuffer) override
-    {
-      int offset = 0;
-      union {
-        bool real;
-        uint8_t base;
-      } u_result;
-      u_result.base = 0;
-      u_result.base |= ((uint8_t) (*(inbuffer + offset + 0))) << (8 * 0);
-      this->result = u_result.real;
-      offset += sizeof(this->result);
-     return offset;
-    }
-
-    virtual const char * getType() override { return GOBUTTON; };
-    virtual const char * getMD5() override { return "eb13ac1f1354ccecb7941ee8fa2192e8"; };
-
-  };
-
-  class GoButton {
-    public:
-    typedef GoButtonRequest Request;
-    typedef GoButtonResponse Response;
   };
 
 }
