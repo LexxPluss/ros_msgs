@@ -22,13 +22,14 @@ namespace lexxauto_msgs
       typedef int8_t _is_connect_type;
       _is_connect_type is_connect;
       uint32_t value_length;
-      typedef int8_t _value_type;
+      typedef int32_t _value_type;
       _value_type st_value;
       _value_type * value;
       enum { MODE_INITIALIZE = -1 };
       enum { MODE_STOP = 0 };
       enum { MODE_POSITION = 1 };
       enum { MODE_LOCATION = 2 };
+      enum { MODE_ENCODER = 3 };
       enum { IS_CONNECT_AUTO = 0 };
       enum { IS_CONNECT_CONNECT = 1 };
       enum { IS_CONNECT_DISCONNECT = 2 };
@@ -69,11 +70,14 @@ namespace lexxauto_msgs
       offset += sizeof(this->value_length);
       for( uint32_t i = 0; i < value_length; i++){
       union {
-        int8_t real;
-        uint8_t base;
+        int32_t real;
+        uint32_t base;
       } u_valuei;
       u_valuei.real = this->value[i];
       *(outbuffer + offset + 0) = (u_valuei.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_valuei.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_valuei.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_valuei.base >> (8 * 3)) & 0xFF;
       offset += sizeof(this->value[i]);
       }
       return offset;
@@ -107,24 +111,27 @@ namespace lexxauto_msgs
       value_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
       offset += sizeof(this->value_length);
       if(value_lengthT > value_length)
-        this->value = (int8_t*)realloc(this->value, value_lengthT * sizeof(int8_t));
+        this->value = (int32_t*)realloc(this->value, value_lengthT * sizeof(int32_t));
       value_length = value_lengthT;
       for( uint32_t i = 0; i < value_length; i++){
       union {
-        int8_t real;
-        uint8_t base;
+        int32_t real;
+        uint32_t base;
       } u_st_value;
       u_st_value.base = 0;
-      u_st_value.base |= ((uint8_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_st_value.base |= ((uint32_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_st_value.base |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_st_value.base |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_st_value.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
       this->st_value = u_st_value.real;
       offset += sizeof(this->st_value);
-        memcpy( &(this->value[i]), &(this->st_value), sizeof(int8_t));
+        memcpy( &(this->value[i]), &(this->st_value), sizeof(int32_t));
       }
      return offset;
     }
 
     virtual const char * getType() override { return "lexxauto_msgs/ActuatorRequestPosition"; };
-    virtual const char * getMD5() override { return "d86e2500fb9b095e8273c3cca4fa8926"; };
+    virtual const char * getMD5() override { return "95dd64d5ca130d8d4ed048b3a7299cda"; };
 
   };
 

@@ -124,11 +124,14 @@ static const char MAKEORDER[] = "lexxauto_msgs/MakeOrder";
       _task_uuid_type task_uuid;
       typedef const char* _status_type;
       _status_type status;
+      typedef const char* _reason_for_ng_type;
+      _reason_for_ng_type reason_for_ng;
 
     MakeOrderResponse():
       scenario_id(0),
       task_uuid(""),
-      status("")
+      status(""),
+      reason_for_ng("")
     {
     }
 
@@ -150,6 +153,11 @@ static const char MAKEORDER[] = "lexxauto_msgs/MakeOrder";
       offset += 4;
       memcpy(outbuffer + offset, this->status, length_status);
       offset += length_status;
+      uint32_t length_reason_for_ng = strlen(this->reason_for_ng);
+      varToArr(outbuffer + offset, length_reason_for_ng);
+      offset += 4;
+      memcpy(outbuffer + offset, this->reason_for_ng, length_reason_for_ng);
+      offset += length_reason_for_ng;
       return offset;
     }
 
@@ -179,11 +187,20 @@ static const char MAKEORDER[] = "lexxauto_msgs/MakeOrder";
       inbuffer[offset+length_status-1]=0;
       this->status = (char *)(inbuffer + offset-1);
       offset += length_status;
+      uint32_t length_reason_for_ng;
+      arrToVar(length_reason_for_ng, (inbuffer + offset));
+      offset += 4;
+      for(unsigned int k= offset; k< offset+length_reason_for_ng; ++k){
+          inbuffer[k-1]=inbuffer[k];
+      }
+      inbuffer[offset+length_reason_for_ng-1]=0;
+      this->reason_for_ng = (char *)(inbuffer + offset-1);
+      offset += length_reason_for_ng;
      return offset;
     }
 
     virtual const char * getType() override { return MAKEORDER; };
-    virtual const char * getMD5() override { return "4d935053f3d7fd68e47624a7a5cce7f1"; };
+    virtual const char * getMD5() override { return "a343f03dfb305cac2234ad9e5587d344"; };
 
   };
 
