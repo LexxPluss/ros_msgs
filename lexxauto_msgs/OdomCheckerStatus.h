@@ -79,6 +79,8 @@ namespace lexxauto_msgs
       _has_large_wheel_resistance_type has_large_wheel_resistance;
       typedef bool _has_wheel_stuck_type;
       _has_wheel_stuck_type has_wheel_stuck;
+      typedef bool _has_motor_driver_error_type;
+      _has_motor_driver_error_type has_motor_driver_error;
       typedef sensor_msgs::Imu _imu_raw_type;
       _imu_raw_type imu_raw;
       typedef sensor_msgs::Imu _imu_filtered_type;
@@ -129,6 +131,7 @@ namespace lexxauto_msgs
       has_large_right_wheel_acc(0),
       has_large_wheel_resistance(0),
       has_wheel_stuck(0),
+      has_motor_driver_error(0),
       imu_raw(),
       imu_filtered(),
       odom_raw(),
@@ -473,6 +476,13 @@ namespace lexxauto_msgs
       u_has_wheel_stuck.real = this->has_wheel_stuck;
       *(outbuffer + offset + 0) = (u_has_wheel_stuck.base >> (8 * 0)) & 0xFF;
       offset += sizeof(this->has_wheel_stuck);
+      union {
+        bool real;
+        uint8_t base;
+      } u_has_motor_driver_error;
+      u_has_motor_driver_error.real = this->has_motor_driver_error;
+      *(outbuffer + offset + 0) = (u_has_motor_driver_error.base >> (8 * 0)) & 0xFF;
+      offset += sizeof(this->has_motor_driver_error);
       offset += this->imu_raw.serialize(outbuffer + offset);
       offset += this->imu_filtered.serialize(outbuffer + offset);
       offset += this->odom_raw.serialize(outbuffer + offset);
@@ -900,6 +910,14 @@ namespace lexxauto_msgs
       u_has_wheel_stuck.base |= ((uint8_t) (*(inbuffer + offset + 0))) << (8 * 0);
       this->has_wheel_stuck = u_has_wheel_stuck.real;
       offset += sizeof(this->has_wheel_stuck);
+      union {
+        bool real;
+        uint8_t base;
+      } u_has_motor_driver_error;
+      u_has_motor_driver_error.base = 0;
+      u_has_motor_driver_error.base |= ((uint8_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      this->has_motor_driver_error = u_has_motor_driver_error.real;
+      offset += sizeof(this->has_motor_driver_error);
       offset += this->imu_raw.deserialize(inbuffer + offset);
       offset += this->imu_filtered.deserialize(inbuffer + offset);
       offset += this->odom_raw.deserialize(inbuffer + offset);
@@ -968,7 +986,7 @@ namespace lexxauto_msgs
     }
 
     virtual const char * getType() override { return "lexxauto_msgs/OdomCheckerStatus"; };
-    virtual const char * getMD5() override { return "147ba6f27b912e4e14c6edf644745b0c"; };
+    virtual const char * getMD5() override { return "101aea413fa2ad6c7ba55d24e78fe5d6"; };
 
   };
 
