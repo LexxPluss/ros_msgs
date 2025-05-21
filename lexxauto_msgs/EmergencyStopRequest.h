@@ -16,7 +16,6 @@ namespace lexxauto_msgs
       _data_type data;
       enum { ESTOP_NO_ERROR = 0 };
       enum { ESTOP_PUSH_BUMPER = 1 };
-      enum { ESTOP_PUSH_SHELF_BUMPER = 2 };
       enum { ESTOP_DETECT_DOWNWARD = 4 };
       enum { ESTOP_COLLISION_IMU = 8 };
       enum { ESTOP_OTHER = 32768 };
@@ -45,7 +44,7 @@ namespace lexxauto_msgs
     }
 
     virtual const char * getType() override { return "lexxauto_msgs/EmergencyStopRequest"; };
-    virtual const char * getMD5() override { return "b4c54148b346178d4d587f77d8cf24bd"; };
+    virtual const char * getMD5() override { return "1aca3ab6e383a92d2ee3b7e6661ffd57"; };
 
   };
 

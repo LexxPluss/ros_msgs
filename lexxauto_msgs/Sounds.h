@@ -21,11 +21,14 @@ static const char SOUNDS[] = "lexxauto_msgs/Sounds";
       _repeat_type repeat;
       typedef bool _interrupt_type;
       _interrupt_type interrupt;
+      typedef uint8_t _priority_type;
+      _priority_type priority;
 
     SoundsRequest():
       patterns_length(0), st_patterns(), patterns(nullptr),
       repeat(0),
-      interrupt(0)
+      interrupt(0),
+      priority(0)
     {
     }
 
@@ -58,6 +61,8 @@ static const char SOUNDS[] = "lexxauto_msgs/Sounds";
       u_interrupt.real = this->interrupt;
       *(outbuffer + offset + 0) = (u_interrupt.base >> (8 * 0)) & 0xFF;
       offset += sizeof(this->interrupt);
+      *(outbuffer + offset + 0) = (this->priority >> (8 * 0)) & 0xFF;
+      offset += sizeof(this->priority);
       return offset;
     }
 
@@ -100,11 +105,13 @@ static const char SOUNDS[] = "lexxauto_msgs/Sounds";
       u_interrupt.base |= ((uint8_t) (*(inbuffer + offset + 0))) << (8 * 0);
       this->interrupt = u_interrupt.real;
       offset += sizeof(this->interrupt);
+      this->priority =  ((uint8_t) (*(inbuffer + offset)));
+      offset += sizeof(this->priority);
      return offset;
     }
 
     virtual const char * getType() override { return SOUNDS; };
-    virtual const char * getMD5() override { return "59d77da1265dfe7cdc76a1ccea9308a1"; };
+    virtual const char * getMD5() override { return "a045501998e7e3957748db34a6104285"; };
 
   };
 

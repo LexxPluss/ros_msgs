@@ -25,6 +25,8 @@ namespace lexxauto_msgs
       _total_elapsed_sec_type total_elapsed_sec;
       typedef float _progress_type;
       _progress_type progress;
+      typedef float _traveled_distance_type;
+      _traveled_distance_type traveled_distance;
       uint32_t plan_length;
       typedef lexxauto_msgs::ModeInfo _plan_type;
       _plan_type st_plan;
@@ -41,6 +43,7 @@ namespace lexxauto_msgs
       current(),
       total_elapsed_sec(0),
       progress(0),
+      traveled_distance(0),
       plan_length(0), st_plan(), plan(nullptr),
       history_length(0), st_history(), history(nullptr)
     {
@@ -85,6 +88,16 @@ namespace lexxauto_msgs
       *(outbuffer + offset + 2) = (u_progress.base >> (8 * 2)) & 0xFF;
       *(outbuffer + offset + 3) = (u_progress.base >> (8 * 3)) & 0xFF;
       offset += sizeof(this->progress);
+      union {
+        float real;
+        uint32_t base;
+      } u_traveled_distance;
+      u_traveled_distance.real = this->traveled_distance;
+      *(outbuffer + offset + 0) = (u_traveled_distance.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_traveled_distance.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_traveled_distance.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_traveled_distance.base >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->traveled_distance);
       *(outbuffer + offset + 0) = (this->plan_length >> (8 * 0)) & 0xFF;
       *(outbuffer + offset + 1) = (this->plan_length >> (8 * 1)) & 0xFF;
       *(outbuffer + offset + 2) = (this->plan_length >> (8 * 2)) & 0xFF;
@@ -153,6 +166,17 @@ namespace lexxauto_msgs
       u_progress.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
       this->progress = u_progress.real;
       offset += sizeof(this->progress);
+      union {
+        float real;
+        uint32_t base;
+      } u_traveled_distance;
+      u_traveled_distance.base = 0;
+      u_traveled_distance.base |= ((uint32_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_traveled_distance.base |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_traveled_distance.base |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_traveled_distance.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      this->traveled_distance = u_traveled_distance.real;
+      offset += sizeof(this->traveled_distance);
       uint32_t plan_lengthT = ((uint32_t) (*(inbuffer + offset))); 
       plan_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
       plan_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
@@ -181,7 +205,7 @@ namespace lexxauto_msgs
     }
 
     virtual const char * getType() override { return "lexxauto_msgs/OrderInfo"; };
-    virtual const char * getMD5() override { return "cbb19be498214ca4ef144599e67842d5"; };
+    virtual const char * getMD5() override { return "36735ac637ca773d0017409fcf3fe09d"; };
 
   };
 

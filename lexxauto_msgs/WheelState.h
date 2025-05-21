@@ -23,13 +23,16 @@ namespace lexxauto_msgs
       _vel_state_type vel_state;
       typedef double _eff_state_type;
       _eff_state_type eff_state;
+      typedef double _cur_state_type;
+      _cur_state_type cur_state;
 
     WheelState():
       header(),
       eff_input(0),
       pos_state(0),
       vel_state(0),
-      eff_state(0)
+      eff_state(0),
+      cur_state(0)
     {
     }
 
@@ -93,6 +96,20 @@ namespace lexxauto_msgs
       *(outbuffer + offset + 6) = (u_eff_state.base >> (8 * 6)) & 0xFF;
       *(outbuffer + offset + 7) = (u_eff_state.base >> (8 * 7)) & 0xFF;
       offset += sizeof(this->eff_state);
+      union {
+        double real;
+        uint64_t base;
+      } u_cur_state;
+      u_cur_state.real = this->cur_state;
+      *(outbuffer + offset + 0) = (u_cur_state.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_cur_state.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_cur_state.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_cur_state.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_cur_state.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_cur_state.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_cur_state.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_cur_state.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->cur_state);
       return offset;
     }
 
@@ -160,11 +177,26 @@ namespace lexxauto_msgs
       u_eff_state.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
       this->eff_state = u_eff_state.real;
       offset += sizeof(this->eff_state);
+      union {
+        double real;
+        uint64_t base;
+      } u_cur_state;
+      u_cur_state.base = 0;
+      u_cur_state.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_cur_state.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_cur_state.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_cur_state.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_cur_state.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_cur_state.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_cur_state.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_cur_state.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->cur_state = u_cur_state.real;
+      offset += sizeof(this->cur_state);
      return offset;
     }
 
     virtual const char * getType() override { return "lexxauto_msgs/WheelState"; };
-    virtual const char * getMD5() override { return "57cb230f6136dcad768f8b2f64b8018f"; };
+    virtual const char * getMD5() override { return "973b3a211556a24380b63feca314cdd3"; };
 
   };
 

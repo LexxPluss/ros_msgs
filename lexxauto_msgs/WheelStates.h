@@ -47,7 +47,7 @@ namespace lexxauto_msgs
     }
 
     virtual const char * getType() override { return "lexxauto_msgs/WheelStates"; };
-    virtual const char * getMD5() override { return "33ae203b081070688c570058e2183e73"; };
+    virtual const char * getMD5() override { return "699c13fd47ff188ccd71a28b50b2a1ce"; };
 
   };
 

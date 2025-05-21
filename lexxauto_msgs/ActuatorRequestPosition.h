@@ -30,6 +30,7 @@ namespace lexxauto_msgs
       enum { MODE_POSITION = 1 };
       enum { MODE_LOCATION = 2 };
       enum { MODE_ENCODER = 3 };
+      enum { MODE_CURRENT = 4 };
       enum { IS_CONNECT_AUTO = 0 };
       enum { IS_CONNECT_CONNECT = 1 };
       enum { IS_CONNECT_DISCONNECT = 2 };
@@ -131,7 +132,7 @@ namespace lexxauto_msgs
     }
 
     virtual const char * getType() override { return "lexxauto_msgs/ActuatorRequestPosition"; };
-    virtual const char * getMD5() override { return "95dd64d5ca130d8d4ed048b3a7299cda"; };
+    virtual const char * getMD5() override { return "d02f5c0a46e2ba61b02a0897110bda24"; };
 
   };
 
