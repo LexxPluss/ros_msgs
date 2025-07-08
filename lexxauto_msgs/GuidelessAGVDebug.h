@@ -29,10 +29,6 @@ namespace lexxauto_msgs
       _i_lat_err_type i_lat_err;
       typedef double _i_yaw_err_type;
       _i_yaw_err_type i_yaw_err;
-      typedef double _goal2robot_x_err_type;
-      _goal2robot_x_err_type goal2robot_x_err;
-      typedef double _goal2robot_y_err_type;
-      _goal2robot_y_err_type goal2robot_y_err;
 
     GuidelessAGVDebug():
       header(),
@@ -42,9 +38,7 @@ namespace lexxauto_msgs
       lat_err(0),
       yaw_err(0),
       i_lat_err(0),
-      i_yaw_err(0),
-      goal2robot_x_err(0),
-      goal2robot_y_err(0)
+      i_yaw_err(0)
     {
     }
 
@@ -138,34 +132,6 @@ namespace lexxauto_msgs
       *(outbuffer + offset + 6) = (u_i_yaw_err.base >> (8 * 6)) & 0xFF;
       *(outbuffer + offset + 7) = (u_i_yaw_err.base >> (8 * 7)) & 0xFF;
       offset += sizeof(this->i_yaw_err);
-      union {
-        double real;
-        uint64_t base;
-      } u_goal2robot_x_err;
-      u_goal2robot_x_err.real = this->goal2robot_x_err;
-      *(outbuffer + offset + 0) = (u_goal2robot_x_err.base >> (8 * 0)) & 0xFF;
-      *(outbuffer + offset + 1) = (u_goal2robot_x_err.base >> (8 * 1)) & 0xFF;
-      *(outbuffer + offset + 2) = (u_goal2robot_x_err.base >> (8 * 2)) & 0xFF;
-      *(outbuffer + offset + 3) = (u_goal2robot_x_err.base >> (8 * 3)) & 0xFF;
-      *(outbuffer + offset + 4) = (u_goal2robot_x_err.base >> (8 * 4)) & 0xFF;
-      *(outbuffer + offset + 5) = (u_goal2robot_x_err.base >> (8 * 5)) & 0xFF;
-      *(outbuffer + offset + 6) = (u_goal2robot_x_err.base >> (8 * 6)) & 0xFF;
-      *(outbuffer + offset + 7) = (u_goal2robot_x_err.base >> (8 * 7)) & 0xFF;
-      offset += sizeof(this->goal2robot_x_err);
-      union {
-        double real;
-        uint64_t base;
-      } u_goal2robot_y_err;
-      u_goal2robot_y_err.real = this->goal2robot_y_err;
-      *(outbuffer + offset + 0) = (u_goal2robot_y_err.base >> (8 * 0)) & 0xFF;
-      *(outbuffer + offset + 1) = (u_goal2robot_y_err.base >> (8 * 1)) & 0xFF;
-      *(outbuffer + offset + 2) = (u_goal2robot_y_err.base >> (8 * 2)) & 0xFF;
-      *(outbuffer + offset + 3) = (u_goal2robot_y_err.base >> (8 * 3)) & 0xFF;
-      *(outbuffer + offset + 4) = (u_goal2robot_y_err.base >> (8 * 4)) & 0xFF;
-      *(outbuffer + offset + 5) = (u_goal2robot_y_err.base >> (8 * 5)) & 0xFF;
-      *(outbuffer + offset + 6) = (u_goal2robot_y_err.base >> (8 * 6)) & 0xFF;
-      *(outbuffer + offset + 7) = (u_goal2robot_y_err.base >> (8 * 7)) & 0xFF;
-      offset += sizeof(this->goal2robot_y_err);
       return offset;
     }
 
@@ -266,41 +232,11 @@ namespace lexxauto_msgs
       u_i_yaw_err.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
       this->i_yaw_err = u_i_yaw_err.real;
       offset += sizeof(this->i_yaw_err);
-      union {
-        double real;
-        uint64_t base;
-      } u_goal2robot_x_err;
-      u_goal2robot_x_err.base = 0;
-      u_goal2robot_x_err.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
-      u_goal2robot_x_err.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
-      u_goal2robot_x_err.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
-      u_goal2robot_x_err.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
-      u_goal2robot_x_err.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
-      u_goal2robot_x_err.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
-      u_goal2robot_x_err.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
-      u_goal2robot_x_err.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
-      this->goal2robot_x_err = u_goal2robot_x_err.real;
-      offset += sizeof(this->goal2robot_x_err);
-      union {
-        double real;
-        uint64_t base;
-      } u_goal2robot_y_err;
-      u_goal2robot_y_err.base = 0;
-      u_goal2robot_y_err.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
-      u_goal2robot_y_err.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
-      u_goal2robot_y_err.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
-      u_goal2robot_y_err.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
-      u_goal2robot_y_err.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
-      u_goal2robot_y_err.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
-      u_goal2robot_y_err.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
-      u_goal2robot_y_err.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
-      this->goal2robot_y_err = u_goal2robot_y_err.real;
-      offset += sizeof(this->goal2robot_y_err);
      return offset;
     }
 
     virtual const char * getType() override { return "lexxauto_msgs/GuidelessAGVDebug"; };
-    virtual const char * getMD5() override { return "3742b30f7e3e594e43abd61bf052d747"; };
+    virtual const char * getMD5() override { return "9bef5f23b9e98f17b39f2ae83405e68c"; };
 
   };
 
