@@ -20,30 +20,40 @@ namespace lexxauto_msgs
       _front_warning_distance_type front_warning_distance;
       typedef const char* _front_right_type;
       _front_right_type front_right;
+      typedef const char* _front_right_uss_type;
+      _front_right_uss_type front_right_uss;
       typedef float _front_right_stop_distance_type;
       _front_right_stop_distance_type front_right_stop_distance;
       typedef float _front_right_warning_distance_type;
       _front_right_warning_distance_type front_right_warning_distance;
       typedef const char* _front_left_type;
       _front_left_type front_left;
+      typedef const char* _front_left_uss_type;
+      _front_left_uss_type front_left_uss;
       typedef float _front_left_stop_distance_type;
       _front_left_stop_distance_type front_left_stop_distance;
       typedef float _front_left_warning_distance_type;
       _front_left_warning_distance_type front_left_warning_distance;
       typedef const char* _side_right_type;
       _side_right_type side_right;
+      typedef const char* _side_right_uss_type;
+      _side_right_uss_type side_right_uss;
       typedef float _side_right_stop_distance_type;
       _side_right_stop_distance_type side_right_stop_distance;
       typedef float _side_right_warning_distance_type;
       _side_right_warning_distance_type side_right_warning_distance;
       typedef const char* _side_left_type;
       _side_left_type side_left;
+      typedef const char* _side_left_uss_type;
+      _side_left_uss_type side_left_uss;
       typedef float _side_left_stop_distance_type;
       _side_left_stop_distance_type side_left_stop_distance;
       typedef float _side_left_warning_distance_type;
       _side_left_warning_distance_type side_left_warning_distance;
       typedef const char* _rear_type;
       _rear_type rear;
+      typedef const char* _rear_uss_type;
+      _rear_uss_type rear_uss;
       typedef float _rear_stop_distance_type;
       _rear_stop_distance_type rear_stop_distance;
       typedef float _rear_warning_distance_type;
@@ -70,18 +80,23 @@ namespace lexxauto_msgs
       front_stop_distance(0),
       front_warning_distance(0),
       front_right(""),
+      front_right_uss(""),
       front_right_stop_distance(0),
       front_right_warning_distance(0),
       front_left(""),
+      front_left_uss(""),
       front_left_stop_distance(0),
       front_left_warning_distance(0),
       side_right(""),
+      side_right_uss(""),
       side_right_stop_distance(0),
       side_right_warning_distance(0),
       side_left(""),
+      side_left_uss(""),
       side_left_stop_distance(0),
       side_left_warning_distance(0),
       rear(""),
+      rear_uss(""),
       rear_stop_distance(0),
       rear_warning_distance(0),
       rear_right(""),
@@ -128,6 +143,11 @@ namespace lexxauto_msgs
       offset += 4;
       memcpy(outbuffer + offset, this->front_right, length_front_right);
       offset += length_front_right;
+      uint32_t length_front_right_uss = strlen(this->front_right_uss);
+      varToArr(outbuffer + offset, length_front_right_uss);
+      offset += 4;
+      memcpy(outbuffer + offset, this->front_right_uss, length_front_right_uss);
+      offset += length_front_right_uss;
       union {
         float real;
         uint32_t base;
@@ -153,6 +173,11 @@ namespace lexxauto_msgs
       offset += 4;
       memcpy(outbuffer + offset, this->front_left, length_front_left);
       offset += length_front_left;
+      uint32_t length_front_left_uss = strlen(this->front_left_uss);
+      varToArr(outbuffer + offset, length_front_left_uss);
+      offset += 4;
+      memcpy(outbuffer + offset, this->front_left_uss, length_front_left_uss);
+      offset += length_front_left_uss;
       union {
         float real;
         uint32_t base;
@@ -178,6 +203,11 @@ namespace lexxauto_msgs
       offset += 4;
       memcpy(outbuffer + offset, this->side_right, length_side_right);
       offset += length_side_right;
+      uint32_t length_side_right_uss = strlen(this->side_right_uss);
+      varToArr(outbuffer + offset, length_side_right_uss);
+      offset += 4;
+      memcpy(outbuffer + offset, this->side_right_uss, length_side_right_uss);
+      offset += length_side_right_uss;
       union {
         float real;
         uint32_t base;
@@ -203,6 +233,11 @@ namespace lexxauto_msgs
       offset += 4;
       memcpy(outbuffer + offset, this->side_left, length_side_left);
       offset += length_side_left;
+      uint32_t length_side_left_uss = strlen(this->side_left_uss);
+      varToArr(outbuffer + offset, length_side_left_uss);
+      offset += 4;
+      memcpy(outbuffer + offset, this->side_left_uss, length_side_left_uss);
+      offset += length_side_left_uss;
       union {
         float real;
         uint32_t base;
@@ -228,6 +263,11 @@ namespace lexxauto_msgs
       offset += 4;
       memcpy(outbuffer + offset, this->rear, length_rear);
       offset += length_rear;
+      uint32_t length_rear_uss = strlen(this->rear_uss);
+      varToArr(outbuffer + offset, length_rear_uss);
+      offset += 4;
+      memcpy(outbuffer + offset, this->rear_uss, length_rear_uss);
+      offset += length_rear_uss;
       union {
         float real;
         uint32_t base;
@@ -364,6 +404,15 @@ namespace lexxauto_msgs
       inbuffer[offset+length_front_right-1]=0;
       this->front_right = (char *)(inbuffer + offset-1);
       offset += length_front_right;
+      uint32_t length_front_right_uss;
+      arrToVar(length_front_right_uss, (inbuffer + offset));
+      offset += 4;
+      for(unsigned int k= offset; k< offset+length_front_right_uss; ++k){
+          inbuffer[k-1]=inbuffer[k];
+      }
+      inbuffer[offset+length_front_right_uss-1]=0;
+      this->front_right_uss = (char *)(inbuffer + offset-1);
+      offset += length_front_right_uss;
       union {
         float real;
         uint32_t base;
@@ -395,6 +444,15 @@ namespace lexxauto_msgs
       inbuffer[offset+length_front_left-1]=0;
       this->front_left = (char *)(inbuffer + offset-1);
       offset += length_front_left;
+      uint32_t length_front_left_uss;
+      arrToVar(length_front_left_uss, (inbuffer + offset));
+      offset += 4;
+      for(unsigned int k= offset; k< offset+length_front_left_uss; ++k){
+          inbuffer[k-1]=inbuffer[k];
+      }
+      inbuffer[offset+length_front_left_uss-1]=0;
+      this->front_left_uss = (char *)(inbuffer + offset-1);
+      offset += length_front_left_uss;
       union {
         float real;
         uint32_t base;
@@ -426,6 +484,15 @@ namespace lexxauto_msgs
       inbuffer[offset+length_side_right-1]=0;
       this->side_right = (char *)(inbuffer + offset-1);
       offset += length_side_right;
+      uint32_t length_side_right_uss;
+      arrToVar(length_side_right_uss, (inbuffer + offset));
+      offset += 4;
+      for(unsigned int k= offset; k< offset+length_side_right_uss; ++k){
+          inbuffer[k-1]=inbuffer[k];
+      }
+      inbuffer[offset+length_side_right_uss-1]=0;
+      this->side_right_uss = (char *)(inbuffer + offset-1);
+      offset += length_side_right_uss;
       union {
         float real;
         uint32_t base;
@@ -457,6 +524,15 @@ namespace lexxauto_msgs
       inbuffer[offset+length_side_left-1]=0;
       this->side_left = (char *)(inbuffer + offset-1);
       offset += length_side_left;
+      uint32_t length_side_left_uss;
+      arrToVar(length_side_left_uss, (inbuffer + offset));
+      offset += 4;
+      for(unsigned int k= offset; k< offset+length_side_left_uss; ++k){
+          inbuffer[k-1]=inbuffer[k];
+      }
+      inbuffer[offset+length_side_left_uss-1]=0;
+      this->side_left_uss = (char *)(inbuffer + offset-1);
+      offset += length_side_left_uss;
       union {
         float real;
         uint32_t base;
@@ -488,6 +564,15 @@ namespace lexxauto_msgs
       inbuffer[offset+length_rear-1]=0;
       this->rear = (char *)(inbuffer + offset-1);
       offset += length_rear;
+      uint32_t length_rear_uss;
+      arrToVar(length_rear_uss, (inbuffer + offset));
+      offset += 4;
+      for(unsigned int k= offset; k< offset+length_rear_uss; ++k){
+          inbuffer[k-1]=inbuffer[k];
+      }
+      inbuffer[offset+length_rear_uss-1]=0;
+      this->rear_uss = (char *)(inbuffer + offset-1);
+      offset += length_rear_uss;
       union {
         float real;
         uint32_t base;
@@ -598,7 +683,7 @@ namespace lexxauto_msgs
     }
 
     virtual const char * getType() override { return "lexxauto_msgs/SafetyFunc"; };
-    virtual const char * getMD5() override { return "c50f44f2415b44910a49e6f71dcadd68"; };
+    virtual const char * getMD5() override { return "9a5d623507650d28c6516057357921a9"; };
 
   };
 
