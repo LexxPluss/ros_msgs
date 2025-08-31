@@ -74,6 +74,10 @@ namespace lexxauto_msgs
       _diagonal_dir_sensitivity_right_type diagonal_dir_sensitivity_right;
       typedef float _diagonal_dir_sensitivity_left_type;
       _diagonal_dir_sensitivity_left_type diagonal_dir_sensitivity_left;
+      typedef float _max_linear_velocity_type;
+      _max_linear_velocity_type max_linear_velocity;
+      typedef float _max_angular_velocity_type;
+      _max_angular_velocity_type max_angular_velocity;
 
     SafetyFunc():
       front(""),
@@ -106,7 +110,9 @@ namespace lexxauto_msgs
       rear_left_stop_distance(0),
       rear_left_warning_distance(0),
       diagonal_dir_sensitivity_right(0),
-      diagonal_dir_sensitivity_left(0)
+      diagonal_dir_sensitivity_left(0),
+      max_linear_velocity(0),
+      max_angular_velocity(0)
     {
     }
 
@@ -358,6 +364,26 @@ namespace lexxauto_msgs
       *(outbuffer + offset + 2) = (u_diagonal_dir_sensitivity_left.base >> (8 * 2)) & 0xFF;
       *(outbuffer + offset + 3) = (u_diagonal_dir_sensitivity_left.base >> (8 * 3)) & 0xFF;
       offset += sizeof(this->diagonal_dir_sensitivity_left);
+      union {
+        float real;
+        uint32_t base;
+      } u_max_linear_velocity;
+      u_max_linear_velocity.real = this->max_linear_velocity;
+      *(outbuffer + offset + 0) = (u_max_linear_velocity.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_max_linear_velocity.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_max_linear_velocity.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_max_linear_velocity.base >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->max_linear_velocity);
+      union {
+        float real;
+        uint32_t base;
+      } u_max_angular_velocity;
+      u_max_angular_velocity.real = this->max_angular_velocity;
+      *(outbuffer + offset + 0) = (u_max_angular_velocity.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_max_angular_velocity.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_max_angular_velocity.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_max_angular_velocity.base >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->max_angular_velocity);
       return offset;
     }
 
@@ -679,11 +705,33 @@ namespace lexxauto_msgs
       u_diagonal_dir_sensitivity_left.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
       this->diagonal_dir_sensitivity_left = u_diagonal_dir_sensitivity_left.real;
       offset += sizeof(this->diagonal_dir_sensitivity_left);
+      union {
+        float real;
+        uint32_t base;
+      } u_max_linear_velocity;
+      u_max_linear_velocity.base = 0;
+      u_max_linear_velocity.base |= ((uint32_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_max_linear_velocity.base |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_max_linear_velocity.base |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_max_linear_velocity.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      this->max_linear_velocity = u_max_linear_velocity.real;
+      offset += sizeof(this->max_linear_velocity);
+      union {
+        float real;
+        uint32_t base;
+      } u_max_angular_velocity;
+      u_max_angular_velocity.base = 0;
+      u_max_angular_velocity.base |= ((uint32_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_max_angular_velocity.base |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_max_angular_velocity.base |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_max_angular_velocity.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      this->max_angular_velocity = u_max_angular_velocity.real;
+      offset += sizeof(this->max_angular_velocity);
      return offset;
     }
 
     virtual const char * getType() override { return "lexxauto_msgs/SafetyFunc"; };
-    virtual const char * getMD5() override { return "9a5d623507650d28c6516057357921a9"; };
+    virtual const char * getMD5() override { return "572db0d4195a2efaeb38814d9505d429"; };
 
   };
 
