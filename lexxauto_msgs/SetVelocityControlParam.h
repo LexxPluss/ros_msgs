@@ -17,9 +17,11 @@ static const char SETVELOCITYCONTROLPARAM[] = "lexxauto_msgs/SetVelocityControlP
       _param_type_type param_type;
       typedef double _value_type;
       _value_type value;
-      enum { PARAM_TYPE_ACCELERATION = 1 };
+      enum { PARAM_TYPE_ACCELERATION = 1   };
       enum { PARAM_TYPE_DECELERATION_SOLO = 2 };
       enum { PARAM_TYPE_DECELERATION_CART = 3 };
+      enum { PARAM_TYPE_ACCELERATION_SOLO = 4 };
+      enum { PARAM_TYPE_ACCELERATION_CART = 5 };
 
     SetVelocityControlParamRequest():
       param_type(0),
@@ -73,7 +75,7 @@ static const char SETVELOCITYCONTROLPARAM[] = "lexxauto_msgs/SetVelocityControlP
     }
 
     virtual const char * getType() override { return SETVELOCITYCONTROLPARAM; };
-    virtual const char * getMD5() override { return "de50aec0ceaf0155ebd3d99d4625b867"; };
+    virtual const char * getMD5() override { return "e448d1b60d9dbd4640601d7c59eb85ab"; };
 
   };
 
